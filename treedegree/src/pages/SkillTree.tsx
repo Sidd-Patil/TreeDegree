@@ -30,10 +30,12 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { ElectiveBucketNode } from "@/components/ElectiveBucketNode";
+
 
 type CourseStatus = "completed" | "available" | "locked";
 
-const nodeTypes = { course: CourseNode };
+const nodeTypes = { course: CourseNode, bucket: ElectiveBucketNode };
 
 function prereqClosure(targetNodeIds: string[], edges: Edge[]) {
   const { parents } = buildAdjacency(edges); // you already have this helper
@@ -107,6 +109,55 @@ export function layoutDagre(
   return { nodes: laidOutNodes, edges };
 }
 
+function collapseIsolatedElectivesToBucket(
+  nodes: Node<any>[],
+  edges: Edge[],
+  bucketId = "__electives_bucket__"
+) {
+  // degree map within this electives graph only
+  const deg = new Map<string, number>();
+  for (const n of nodes) deg.set(n.id, 0);
+
+  for (const e of edges) {
+    deg.set(e.source, (deg.get(e.source) ?? 0) + 1);
+    deg.set(e.target, (deg.get(e.target) ?? 0) + 1);
+  }
+
+  const isolated = nodes.filter((n) => (deg.get(n.id) ?? 0) === 0);
+  if (!isolated.length) return { nodes, edges };
+
+  // remove isolated nodes from the flow
+  const keptNodes = nodes.filter((n) => (deg.get(n.id) ?? 0) > 0);
+
+  // build bucket node (unprefixed here; you call this after prefixFlow)
+  const bucketNode: Node<any> = {
+    id: bucketId,
+    type: "bucket",
+    position: { x: 0, y: 0 }, // dagre will place it
+    data: {
+      label: "Other Electives",
+      title: "Not connected to the elective pathways",
+      items: isolated.map((n) => ({
+        id: n.id.replace(/^E:/, ""), // strip prefix if present
+        label: (n.data as any)?.label ?? n.id,
+        title: (n.data as any)?.title ?? "",
+        status: (n.data as any)?.status,
+      })),
+      // IMPORTANT: give it a status so it doesn't get filtered out
+      status: "available",
+    },
+    style: {
+      width: 520,  // ~2x your course width
+      height: 180, // ~2x your course height
+      borderRadius: 18,
+    },
+  };
+
+  return {
+    nodes: [...keptNodes, bucketNode],
+    edges, // bucket has no edges; these remain valid since isolated nodes had none
+  };
+}
 
 function getNodeStatus(n: Node<any>): CourseStatus {
   const s = (n.data as any)?.status;
@@ -687,10 +738,20 @@ function SkillTreeInner() {
     const upperFlow = prefixFlow(upperFlowRaw.nodes as any, upperEdgesPruned, "U:");
     const electivesFlow = prefixFlow(electivesFlowRaw.nodes as any, electivesEdgesPruned, "E:");
 
+    const electivesCollapsed = collapseIsolatedElectivesToBucket(
+      electivesFlow.nodes as any,
+      electivesFlow.edges as any,
+      "E:__electives_bucket__"
+    );
+
     // after pruneDanglingEdges + prefixFlow, do:
     const lowerLaid = layoutDagre(lowerFlow.nodes as any, lowerFlow.edges, "LR");
     const upperLaid = layoutDagre(upperFlow.nodes as any, upperFlow.edges, "LR");
-    const electivesLaid = layoutDagre(electivesFlow.nodes as any, electivesFlow.edges, "LR");
+    const electivesLaid = layoutDagre(
+        electivesCollapsed.nodes as any,
+        electivesCollapsed.edges as any,
+        "LR"
+      );
 
     const lowerFlowLaid = { nodes: lowerLaid.nodes, edges: lowerLaid.edges };
     const upperFlowLaid = { nodes: upperLaid.nodes, edges: upperLaid.edges };
