@@ -51,6 +51,62 @@ function prereqClosure(targetNodeIds: string[], edges: Edge[]) {
   return closure;
 }
 
+import dagre from "dagre";
+
+type LayoutDir = "LR" | "TB";
+
+export function layoutDagre(
+  nodes: Node[],
+  edges: Edge[],
+  dir: LayoutDir = "LR"
+) {
+  const g = new dagre.graphlib.Graph();
+  g.setDefaultEdgeLabel(() => ({}));
+
+  // BIG KNOBS: spacing + pathway feel
+  g.setGraph({
+    rankdir: dir,          // "LR" = left→right pathway, "TB" = top→bottom
+    ranksep: 140,          // distance between prereq layers (increase for more spacing)
+    nodesep: 90,           // distance between nodes in same layer
+    edgesep: 20,
+    marginx: 40,
+    marginy: 40,
+  });
+
+  // Dagre needs node sizes. Use your CourseNode's approximate size.
+  // If your nodes have dynamic sizes, pick a safe constant.
+  const NODE_W = 260;
+  const NODE_H = 90;
+
+  for (const n of nodes) {
+    g.setNode(n.id, {
+      width: (n.style as any)?.width ?? NODE_W,
+      height: (n.style as any)?.height ?? NODE_H,
+    });
+  }
+
+  for (const e of edges) {
+    g.setEdge(e.source, e.target);
+  }
+
+  dagre.layout(g);
+
+  const laidOutNodes = nodes.map((n) => {
+    const p = g.node(n.id);
+    return {
+      ...n,
+      position: {
+        x: p.x - (p.width ?? NODE_W) / 2,
+        y: p.y - (p.height ?? NODE_H) / 2,
+      },
+      // optional: helps ReactFlow not fight you if you later drag things
+      positionAbsolute: undefined,
+    };
+  });
+
+  return { nodes: laidOutNodes, edges };
+}
+
 
 function getNodeStatus(n: Node<any>): CourseStatus {
   const s = (n.data as any)?.status;
@@ -631,41 +687,43 @@ function SkillTreeInner() {
     const upperFlow = prefixFlow(upperFlowRaw.nodes as any, upperEdgesPruned, "U:");
     const electivesFlow = prefixFlow(electivesFlowRaw.nodes as any, electivesEdgesPruned, "E:");
 
+    // after pruneDanglingEdges + prefixFlow, do:
+    const lowerLaid = layoutDagre(lowerFlow.nodes as any, lowerFlow.edges, "LR");
+    const upperLaid = layoutDagre(upperFlow.nodes as any, upperFlow.edges, "LR");
+    const electivesLaid = layoutDagre(electivesFlow.nodes as any, electivesFlow.edges, "LR");
+
+    const lowerFlowLaid = { nodes: lowerLaid.nodes, edges: lowerLaid.edges };
+    const upperFlowLaid = { nodes: upperLaid.nodes, edges: upperLaid.edges };
+    const electivesFlowLaid = { nodes: electivesLaid.nodes, edges: electivesLaid.edges };
+
     const gap = 560;
 
     // normalize lower to x≈0
-    const lb = computeBounds(lowerFlow.nodes as any);
+    const lb = computeBounds(lowerFlowLaid.nodes as any);
     const normalizeLowerX = -lb.minX;
-    const lowerNodesNorm = offsetNodes(lowerFlow.nodes as any, normalizeLowerX, 0);
+    const lowerNodesNorm = offsetNodes(lowerFlowLaid.nodes as any, normalizeLowerX, 0);
 
     const lowerBounds = computeBounds(lowerNodesNorm as any);
     const lowerWidth = lowerBounds.maxX - lowerBounds.minX;
 
-    const upperNodesNorm = offsetNodes(
-      upperFlow.nodes as any,
-      normalizeLowerX + lowerWidth + gap,
-      0
-    );
+    const upperNodesNorm = offsetNodes(upperFlowLaid.nodes as any, normalizeLowerX + lowerWidth + gap, 0);
 
     const ub = computeBounds(upperNodesNorm as any);
     const upperWidth = ub.maxX - ub.minX;
 
-    const electivesNodesNorm = offsetNodes(
-      electivesFlow.nodes as any,
-      normalizeLowerX + lowerWidth + gap + upperWidth + gap,
-      0
-    );
+    const electivesNodesNorm = offsetNodes(electivesFlowLaid.nodes as any, normalizeLowerX + lowerWidth + gap + upperWidth + gap, 0);
 
     const combinedNodes = [...lowerNodesNorm, ...upperNodesNorm, ...electivesNodesNorm];
     const combinedEdges = [
-      ...(lowerFlow.edges as any),
-      ...(upperFlow.edges as any),
-      ...(electivesFlow.edges as any),
+      ...(lowerFlowLaid.edges as any),
+      ...(upperFlowLaid.edges as any),
+      ...(electivesFlowLaid.edges as any),
     ];
 
     setBaseNodes(combinedNodes);
     setBaseEdges(combinedEdges);
   }, [coursesWithStatus]);
+
 
   // Apply status filters + branch highlight styling
   useEffect(() => {

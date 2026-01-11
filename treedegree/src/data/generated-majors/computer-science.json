@@ -823,9 +823,6 @@
     "units": 5,
     "status": "locked",
     "prerequisites": [
-      "math_34b",
-      "math_2b",
-      "math_3b"
     ],
     "unlocksCount": 210,
     "prerequisiteCount": 3,
@@ -838,7 +835,6 @@
     "units": 4,
     "status": "locked",
     "prerequisites": [
-      "math_2b"
     ],
     "unlocksCount": 70,
     "prerequisiteCount": 1,
