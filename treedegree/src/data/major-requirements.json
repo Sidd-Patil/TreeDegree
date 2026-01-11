@@ -330,7 +330,21 @@
             "id": "req.ud.electives_12",
             "type": "choose_units",
             "units": 12,
-            "from": { "subjects": ["MATH", "PSTAT"], "rule": "upper_division_electives" }
+            "from": {
+                "courses": [
+  "MATH-191",
+  "MATH-193",
+  "MATH-194GS",
+  "MATH-197A", "MATH-197B",
+  "MATH-199", "MATH-199RA",
+
+  "MATH-201A", "MATH-201B", "MATH-201C",
+  "MATH-202A", "MATH-202B", "MATH-202C",
+
+  "MATH-206A", "MATH-206B", "MATH-206C", "MATH-206D"
+],
+                "subjects": ["MATH", "PSTAT"]
+          }
           }
         ],
         "exclusions": {

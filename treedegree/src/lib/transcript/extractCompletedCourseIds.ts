@@ -9,9 +9,9 @@ GlobalWorkerOptions.workerSrc = workerSrc;
 const COURSE_REGEX = /\b([A-Z]{2,8})\s*[- ]\s*([0-9]{1,3}[A-Z]?)\b/g;
 
 export function normalizeCourseId(subject: string, number: string): string {
-  const s = subject.trim().toLowerCase();
-  const n = number.trim().toLowerCase();
-  return `${s}_${n}`;
+  const s = subject.trim().toUpperCase();
+  const n = number.trim().toUpperCase().replace(/\s+/g, "");
+  return `${s}-${n}`;
 }
 
 async function extractPdfText(file: File): Promise<string> {
@@ -43,6 +43,10 @@ export async function extractCompletedCourseIds(file: File): Promise<string[]> {
     const subject = match[1];
     const number = match[2];
     ids.add(normalizeCourseId(subject, number));
+    // Mirror catalog indexing behavior for W-suffixed subjects (e.g. PSTATW -> PSTAT)
+    if (subject.endsWith("W") && subject.length > 2) {
+      ids.add(normalizeCourseId(subject.slice(0, -1), number));
+    }
   }
 
   return Array.from(ids);

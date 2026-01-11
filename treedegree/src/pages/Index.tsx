@@ -34,10 +34,10 @@ const Index = () => {
     }
   };
 
-  const handleGenerateTree = () => {
+const handleGenerateTree = () => {
     if (!selectedMajor) return;
     navigate(`/skill-tree/${selectedMajor}`,
-      { state: { completedCourseIds } }
+      { state: { completedIds: completedCourseIds } }
     );
   };
 

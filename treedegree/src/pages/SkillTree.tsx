@@ -446,11 +446,26 @@ function SkillTreeInner() {
 
   const slug = majorSlug ?? "computer-science";
 
+  function canonizeCompletedId(raw: string): string {
+    const s = raw.trim();
+    const m = s.match(/^([A-Za-z]{2,8})\s*[-_ ]\s*([0-9]{1,3}[A-Za-z]{0,2})$/);
+    if (m) return `${m[1].toUpperCase()}-${m[2].toUpperCase()}`;
+    return s.toUpperCase().replace(/\s+/g, "").replace(/_/g, "-");
+  }
+
   // completion state (local, mutable)
   const initialCompletedIds = useMemo(() => {
-    const ids = (location.state as { completedIds?: unknown } | null)?.completedIds;
+    const state = location.state as
+      | { completedIds?: unknown; completedCourseIds?: unknown }
+      | null;
+
+    const ids = state?.completedIds ?? state?.completedCourseIds;
     if (!Array.isArray(ids)) return new Set<string>();
-    return new Set(ids.filter((v): v is string => typeof v === "string"));
+    return new Set(
+      ids
+        .filter((v): v is string => typeof v === "string")
+        .map((v) => canonizeCompletedId(v))
+    );
   }, [location.state]);
 
   const [completedIds, setCompletedIds] = useState<Set<string>>(initialCompletedIds);
