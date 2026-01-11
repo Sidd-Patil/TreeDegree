@@ -1,73 +1,202 @@
-# Welcome to your Lovable project
+## 🌳 TreeDegree
 
-## Project info
+### Inspiration
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+TreeDegree started from a very real frustration: trying to plan an interdisciplinary path at UCSB when majors like Computer Science, Statistics, Mathematics, and Electrical Engineering are tangled together by a web of prerequisites, hidden “OR” clauses, and catalog footnotes. On paper, it looks manageable. In practice, one missed prerequisite can push graduation back by a year.
 
-## How can I edit this code?
+What made this worse was that even the official catalogs flatten everything into long paragraphs:
 
-There are several ways of editing your application.
+> “PSTAT 120A; CS 9 or CS 16; and Math 4A, all with letter grade C or better…”
 
-**Use Lovable**
+Humans can read that. Computers cannot.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+We wanted something that showed the _structure_ of a major — not as text, but as a living dependency graph — so a student could see exactly how one course unlocks another and where alternate paths exist. That idea became TreeDegree.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## What it does
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+TreeDegree turns UCSB’s course catalog and major requirements into an interactive **skill tree**:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Each course is a node
+- Each prerequisite is an edge
+- ANDs and ORs are represented explicitly
+- Bottleneck courses (ones that unlock many others) are highlighted
+- Completed courses automatically unlock new ones
 
-Follow these steps:
+It lets students explore:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- “If I take **MATH 3A instead of 2A**, what changes?”
+- “Which course is my biggest bottleneck?”
+- “Can I reach this upper-division class through multiple paths?”
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+The result is a visual roadmap for majors across **Computer Science, Electrical Engineering, Statistics, Mathematics, and Economics**.
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## How we built it
+
+TreeDegree has three layers: **data**, **logic**, and **visualization**.
+
+### 1. Data ingestion
+
+We start with two real university sources:
+
+- `catalog.json` — scraped UCSB course catalog
+- `major-requirements.json` — structured extraction of degree PDFs
+
+The problem: prerequisites are written in natural language.
+Example:
+
+> `ECE 137A-B with a minimum grade of C-; open to EE majors only.`
+
+So we built a pipeline:
+
+[
+\text{Raw Text} ;\xrightarrow{\text{LLM}}; \text{Logical Prerequisite Tree}
+]
+
+Using a local LLM (via Ollama, `gptos:20b`), we convert every prerequisite into **Disjunctive Normal Form**:
+
+[
+\text{ECE 130A-B or (MATH 4A and PHYS 7A)}
+;;\Rightarrow;;
+[[\text{ECE 130A}, \text{ECE 130B}], [\text{MATH 4A}, \text{PHYS 7A}]]
+]
+
+This becomes `prerequisites_dnf` inside `clean-catalog.json`.
+
+We then validate all outputs against the actual catalog to eliminate hallucinated courses.
+
+---
+
+### 2. Major graph generation
+
+From `major-requirements.json`, we extract:
+
+- Required courses
+- Optional OR paths
+- Elective pools (collapsed into buckets)
+
+We combine that with `clean-catalog.json` to produce:
+
+```
+generated-majors/computer-science.json
+generated-majors/electrical-engineering.json
+...
 ```
 
-**Edit a file directly in GitHub**
+Each file is a clean list of nodes:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Required courses
+- Support prerequisites
+- Elective buckets
 
-**Use GitHub Codespaces**
+Each node includes:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```ts
+{
+  id: "ECE 145A",
+  title: "Communication Electronics",
+  units: 5,
+  prerequisites_dnf: [["ECE 137A", "ECE 137B"]],
+}
+```
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+### 3. Visual graph engine
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+On the frontend we use **React Flow** to render the dependency graph.
 
-## How can I deploy this project?
+To make OR logic visible, we generate **logic gates**:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- Single prereq → direct edge
+- AND prereqs → AND gate
+- OR prereqs → OR gate
 
-## Can I connect a custom domain to my Lovable project?
+So a rule like:
 
-Yes, you can!
+[
+(A \wedge B) ;\vee; C
+]
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+becomes
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+A ─┐
+   ├─ AND ─┐
+B ─┘        ├─ OR ──> Course
+C ─────────┘
+```
+
+That’s how TreeDegree makes the hidden structure of majors visible.
+
+---
+
+## Challenges we ran into
+
+### 1. Natural language is messy
+
+Catalog prerequisites include:
+
+- grade minimums
+- major restrictions
+- prose
+- hyphenated sequences
+- cross-listed courses
+
+We had to isolate **just the logical course structure** and ignore everything else.
+
+### 2. OR logic breaks naive graphs
+
+Traditional prerequisite trees assume everything is an AND.
+But real majors use OR everywhere:
+
+- CS 9 **or** CS 16
+- Math 2A–2B **or** 3A–3B
+
+Without gates, graphs become misleading.
+
+### 3. Noise vs clarity
+
+If we include every elective and every possible option, the graph becomes unreadable.
+So we built **collapsed elective buckets** that preserve rules but don’t overwhelm the UI.
+
+---
+
+## Accomplishments that we're proud of
+
+- A full **LLM-powered prerequisite compiler**
+- A **DNF-based logical representation** of real university rules
+- A **visual OR/AND gate system** inside a ReactFlow UI
+- Support for **five real UCSB majors**
+- Detection of **bottleneck courses** that control large parts of the degree
+
+Most importantly: this system works on _real university data_, not toy examples.
+
+---
+
+## What we learned
+
+We learned that:
+
+- University curricula are actually **formal logic systems** disguised as prose.
+- LLMs are extremely powerful when used as **structured translators**, not generators.
+- Visualizing logic makes planning dramatically easier for humans.
+
+We also learned that good data modeling matters more than flashy UI.
+
+---
+
+## What's next for TreeDegree
+
+Next we plan to add:
+
+- 📜 Transcript upload → automatic “what’s unlocked?”
+- 📊 Graduation timeline simulation
+- 🔀 “What-if” path comparisons
+- 🎓 Advisor mode for counselors
+- 🧠 Major-to-major overlap analysis
+
+TreeDegree is evolving into a **navigation system for education** — helping students see not just what they must take, but _why_, _when_, and _how_ it all fits together.
