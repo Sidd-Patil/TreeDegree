@@ -31,6 +31,8 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { ElectiveBucketNode } from "@/components/ElectiveBucketNode";
+import { toPng } from "html-to-image";
+import type { ReactFlowInstance } from "@xyflow/react";
 
 type CourseStatus = "completed" | "available" | "locked";
 
@@ -552,6 +554,8 @@ function SkillTreeInner() {
   const BUCKET_ID = "E:__electives_bucket__";
   const [electivesBucketOpen, setElectivesBucketOpen] = useState(false);
 
+  const [rfInstance, setRfInstance] = useState<any>(null);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { majorSlug } = useParams<{ majorSlug: string }>();
@@ -667,6 +671,54 @@ function SkillTreeInner() {
     available: true,
     locked: true,
   });
+
+  async function exportPng(opts?: { filename?: string; only?: "L" | "U" | "E" | "ALL" }) {
+  if (!rfInstance) return;
+
+  const filename = opts?.filename ?? `${slug}-skill-tree.png`;
+
+  // Capture current viewport so we can restore it after export
+  const prev = rfInstance.getViewport();
+
+  // Choose subset to fit (ALL, or just one group)
+  const nodesToFit =
+    opts?.only && opts.only !== "ALL"
+      ? (rfInstance.getNodes() as Node<any>[]).filter((n) => n.id.startsWith(`${opts.only}:`))
+      : undefined;
+
+  // Fit view to desired nodes so export includes everything
+  if (nodesToFit?.length) {
+    rfInstance.fitView({ nodes: nodesToFit, padding: 0.25, maxZoom: 1.0, duration: 0 });
+  } else {
+    rfInstance.fitView({ padding: 0.25, maxZoom: 1.0, duration: 0 });
+  }
+
+  // Wait a tick for DOM to settle after fitView
+  await new Promise((r) => requestAnimationFrame(r));
+
+  // React Flow root element (this is what we export)
+  const el = document.querySelector(".react-flow") as HTMLElement | null;
+  if (!el) return;
+
+  const dataUrl = await toPng(el, {
+    pixelRatio: 2, // crisp
+    backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--background")
+      ? undefined
+      : "#ffffff", // fallback if your CSS vars aren't readable
+    // If you have overlay UI you DON'T want in the image, you can filter them out here.
+    // filter: (node) => !node.classList?.contains("no-export"),
+  });
+
+  // Download
+  const a = document.createElement("a");
+  a.setAttribute("download", filename);
+  a.setAttribute("href", dataUrl);
+  a.click();
+
+  // Restore viewport
+  rfInstance.setViewport(prev, { duration: 0 });
+}
+
 
   const highlightTargets = useCallback(
     (unprefixedCourseIds: string[], note?: string) => {
@@ -1010,10 +1062,16 @@ function SkillTreeInner() {
           Reset Filters
         </Button>
 
-        <Button variant="water" size="sm" className="gap-2">
+        <Button
+          variant="water"
+          size="sm"
+          className="gap-2"
+          onClick={() => exportPng({ only: "ALL" })}
+        >
           <Download className="h-4 w-4" />
           Export
         </Button>
+
       </motion.div>
 
       {/* Overlay Title */}
@@ -1071,6 +1129,7 @@ function SkillTreeInner() {
         maxZoom={1.6}
         className="bg-background"
         onInit={(rf) => {
+          setRfInstance(rf);
           requestAnimationFrame(() => rf.fitView({ padding: 0.22, maxZoom: 1.1 }));
         }}
         zoomOnDoubleClick={false}
