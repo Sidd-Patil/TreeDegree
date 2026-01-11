@@ -35,126 +35,6 @@ type CourseStatus = "completed" | "available" | "locked";
 
 const nodeTypes = { course: CourseNode };
 
-type ChatMsg = { role: "user" | "assistant"; content: string };
-
-function CourseChat({
-  majorSlug,
-  courses,
-  onHighlightTargets,
-}: {
-  majorSlug: string;
-  courses: GeneratedCourse[];
-  onHighlightTargets: (courseIds: string[], note?: string) => void;
-}) {
-  const [msgs, setMsgs] = useState<ChatMsg[]>([
-    {
-      role: "assistant",
-      content:
-        "Tell me what you want to do (e.g. “I want to do machine learning”) and I’ll highlight the recommended pathway.",
-    },
-  ]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const courseIndex = useMemo(() => {
-    // small list for the model (keeps prompt short)
-    return courses.map((c) => ({
-      id: c.id,
-      label: c.label,
-      title: c.title,
-      division: c.division ?? "unknown",
-      prerequisites: c.prerequisites ?? [],
-    }));
-  }, [courses]);
-
-  async function send() {
-    const text = input.trim();
-    if (!text || loading) return;
-
-    setMsgs((m) => [...m, { role: "user", content: text }]);
-    setInput("");
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/recommender", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          majorSlug,
-          userMessage: "I want to do machine learning",
-          courses: courseIndex   // your GeneratedCourse[]
-        })
-      });
-
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = (await res.json()) as {
-        message: string;
-        targets: string[];
-      };
-
-      setMsgs((m) => [...m, { role: "assistant", content: data.message }]);
-
-      if (Array.isArray(data.targets) && data.targets.length) {
-        onHighlightTargets(data.targets, data.message);
-      }
-    } catch (e) {
-      console.error(e);
-      setMsgs((m) => [
-        ...m,
-        {
-          role: "assistant",
-          content:
-            "Something went wrong calling the recommender. Make sure your Ollama server is running and /api/recommender is wired.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="absolute top-4 right-4 z-30 w-[360px] max-w-[40vw]">
-      <div className="rounded-2xl border border-muted bg-card/90 backdrop-blur-md shadow-sm overflow-hidden">
-        <div className="px-4 py-3 border-b border-muted flex items-center justify-between">
-          <div className="font-semibold">Course Recommender</div>
-          <div className="text-xs text-muted-foreground">{loading ? "Thinking…" : "Ollama"}</div>
-        </div>
-
-        <div className="max-h-[55vh] overflow-auto px-3 py-3 space-y-2">
-          {msgs.map((m, i) => (
-            <div
-              key={i}
-              className={[
-                "text-sm leading-relaxed rounded-xl px-3 py-2",
-                m.role === "user"
-                  ? "bg-muted ml-6"
-                  : "bg-background border border-muted mr-6",
-              ].join(" ")}
-            >
-              {m.content}
-            </div>
-          ))}
-        </div>
-
-        <div className="p-3 border-t border-muted flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") send();
-            }}
-            placeholder='e.g. "I want to do machine learning"'
-            className="flex-1 h-10 rounded-xl border border-muted bg-background px-3 text-sm outline-none"
-          />
-          <Button variant="water" size="sm" onClick={send} disabled={loading}>
-            Send
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function prereqClosure(targetNodeIds: string[], edges: Edge[]) {
   const { parents } = buildAdjacency(edges); // you already have this helper
   const closure = new Set<string>();
@@ -278,6 +158,197 @@ function computeBranch(selectedId: string, edges: Edge[]): Branch {
     if (inSet.has(e.source) && inSet.has(e.target)) edgesInBranch.add(e.id);
   }
   return { selected: selectedId, ancestors, descendants, edgesInBranch };
+}
+
+/* ---------------- Course Recommender Drawer ---------------- */
+
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+/* ---------------- Course Recommender Drawer ---------------- */
+
+type ChatMsg = { role: "user" | "assistant"; content: string };
+
+function CourseChat({
+  majorSlug,
+  courses,
+  onHighlightTargets,
+}: {
+  majorSlug: string;
+  courses: GeneratedCourse[];
+  onHighlightTargets: (courseIds: string[], note?: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [msgs, setMsgs] = useState<ChatMsg[]>([
+    {
+      role: "assistant",
+      content:
+        "Tell me what you want to do (e.g. **“I want to do machine learning”**) and I’ll highlight the recommended pathway.\n\n- I’ll return a short plan\n- And highlight the relevant nodes",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const courseIndex = useMemo(() => {
+    // keep prompt smaller for the model
+    return courses.map((c) => ({
+      id: c.id,
+      label: c.label,
+      title: c.title,
+      division: c.division ?? "unknown",
+      prerequisites: c.prerequisites ?? [],
+      status: c.status,
+    }));
+  }, [courses]);
+
+  async function send() {
+    const text = input.trim();
+    if (!text || loading) return;
+
+    setMsgs((m) => [...m, { role: "user", content: text }]);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/recommender", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          majorSlug,
+          userMessage: text, // ✅ USE THEIR INPUT (you were hardcoding ML before)
+          courses: courseIndex,
+        }),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = (await res.json()) as { message: string; targets: string[] };
+
+      const assistantMsg =
+        typeof data?.message === "string" && data.message.trim().length
+          ? data.message
+          : "I didn’t get a usable response.";
+
+      setMsgs((m) => [...m, { role: "assistant", content: assistantMsg }]);
+
+      if (Array.isArray(data.targets) && data.targets.length) {
+        onHighlightTargets(data.targets, assistantMsg);
+      }
+    } catch (e) {
+      console.error(e);
+      setMsgs((m) => [
+        ...m,
+        {
+          role: "assistant",
+          content:
+            "Something went wrong calling the recommender.\n\n**Checklist:**\n- Is the server running?\n- Does `/api/recommender` respond?\n- Any CORS/proxy issues in the Vite console?",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
+  const PANEL_W = 360;
+  const TAB_W = 40;
+
+  return (
+    <div className="absolute top-0 right-0 z-30 h-full pointer-events-none">
+      {/* Move TAB + PANEL together */}
+      <motion.div
+        className="pointer-events-auto h-full flex"
+        initial={false}
+        animate={{ x: open ? 0 : PANEL_W }}
+        transition={{ type: "spring", stiffness: 260, damping: 28 }}
+        style={{ width: PANEL_W + TAB_W }}
+      >
+        {/* Tab button (now it moves WITH the drawer) */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className={[
+            "h-32 w-10 self-center",
+            "rounded-l-xl border border-muted bg-card/90 backdrop-blur-md shadow-sm",
+            "hover:bg-card transition",
+            "flex items-center justify-center",
+          ].join(" ")}
+          aria-label="Toggle Course Recommender"
+          title="Course Recommender"
+          style={{ width: TAB_W }}
+        >
+          <span
+            className="text-xs font-semibold text-muted-foreground"
+            style={{
+              writingMode: "vertical-rl",
+              transform: "rotate(180deg)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            COURSE RECOMMENDER
+          </span>
+        </button>
+
+        {/* Drawer panel */}
+        <div
+          className="h-full border-l border-muted bg-card/92 backdrop-blur-md shadow-xl flex flex-col"
+          style={{ width: PANEL_W }}
+        >
+          {/* Header */}
+          <div className="px-4 py-3 border-b border-muted flex items-center justify-between">
+            <div className="font-semibold">Course Recommender</div>
+            <div className="flex items-center gap-2">
+              <div className="text-xs text-muted-foreground">
+                {loading ? "Thinking…" : "AI"}
+              </div>
+              <Button variant="stone" size="sm" onClick={() => setOpen(false)}>
+                Close
+              </Button>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-auto px-3 py-3 space-y-2">
+            {msgs.map((m, i) => (
+              <div
+                key={i}
+                className={[
+                  "text-sm leading-relaxed rounded-xl px-3 py-2",
+                  m.role === "user"
+                    ? "bg-muted ml-10"
+                    : "bg-background border border-muted mr-10",
+                ].join(" ")}
+              >
+                {m.role === "assistant" ? (
+                  <div className="prose prose-sm max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:font-semibold">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {m.content}
+                    </ReactMarkdown>
+                  </div>
+                ) : (
+                  <span>{m.content}</span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Input */}
+          <div className="p-3 border-t border-muted flex gap-2">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") send();
+              }}
+              placeholder='e.g. "I want to do machine learning"'
+              className="flex-1 h-10 rounded-xl border border-muted bg-background px-3 text-sm outline-none"
+            />
+            <Button variant="water" size="sm" onClick={send} disabled={loading}>
+              Send
+            </Button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
 }
 
 /* ---------------- Focus controls ---------------- */
@@ -889,11 +960,12 @@ const onNodeDoubleClick = useCallback(
           </div>
         </div>
       </motion.div>
-      <CourseChat
+<CourseChat
   majorSlug={slug}
-  courses={coursesWithStatus}  // or rawCourses if you prefer
+  courses={coursesWithStatus}
   onHighlightTargets={highlightTargets}
 />
+
     </div>
   );
 }
