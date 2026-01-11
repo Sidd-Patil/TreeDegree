@@ -32,7 +32,6 @@ import {
 } from "@/components/ui/dialog";
 import { ElectiveBucketNode } from "@/components/ElectiveBucketNode";
 
-
 type CourseStatus = "completed" | "available" | "locked";
 
 const nodeTypes = { course: CourseNode, bucket: ElectiveBucketNode };
@@ -57,19 +56,15 @@ import dagre from "dagre";
 
 type LayoutDir = "LR" | "TB";
 
-export function layoutDagre(
-  nodes: Node[],
-  edges: Edge[],
-  dir: LayoutDir = "LR"
-) {
+export function layoutDagre(nodes: Node[], edges: Edge[], dir: LayoutDir = "LR") {
   const g = new dagre.graphlib.Graph();
   g.setDefaultEdgeLabel(() => ({}));
 
   // BIG KNOBS: spacing + pathway feel
   g.setGraph({
-    rankdir: dir,          // "LR" = left→right pathway, "TB" = top→bottom
-    ranksep: 140,          // distance between prereq layers (increase for more spacing)
-    nodesep: 90,           // distance between nodes in same layer
+    rankdir: dir, // "LR" = left→right pathway, "TB" = top→bottom
+    ranksep: 140, // distance between prereq layers (increase for more spacing)
+    nodesep: 90, // distance between nodes in same layer
     edgesep: 20,
     marginx: 40,
     marginy: 40,
@@ -112,6 +107,8 @@ export function layoutDagre(
 function collapseIsolatedElectivesToBucket(
   nodes: Node<any>[],
   edges: Edge[],
+  courseById: Map<string, GeneratedCourse>,
+  onOpenCourse: (courseId: string) => void,
   bucketId = "__electives_bucket__"
 ) {
   // degree map within this electives graph only
@@ -137,17 +134,23 @@ function collapseIsolatedElectivesToBucket(
     data: {
       label: "Other Electives",
       title: "Must Complete All Upper Div Courses",
-      items: isolated.map((n) => ({
-        id: n.id.replace(/^E:/, ""), // strip prefix if present
-        label: (n.data as any)?.label ?? n.id,
-        title: (n.data as any)?.title ?? "",
-        status: (n.data as any)?.status,
-      })),
+      items: isolated.map((n) => {
+        const unpref = n.id.replace(/^E:/, "");
+        const c = courseById.get(unpref);
+
+        return {
+          id: unpref,
+          label: c?.label ?? (n.data as any)?.label ?? unpref,
+          title: c?.title ?? (n.data as any)?.title ?? "",
+          status: (c?.status as any) ?? (n.data as any)?.status,
+        };
+      }),
+      onOpenCourse,
       // IMPORTANT: give it a status so it doesn't get filtered out
       status: "available",
     },
     style: {
-      width: 520,  // ~2x your course width
+      width: 520, // ~2x your course width
       height: 180, // ~2x your course height
       borderRadius: 18,
     },
@@ -167,7 +170,9 @@ function getNodeStatus(n: Node<any>): CourseStatus {
 function splitByGroup(courses: GeneratedCourse[]) {
   const lower = courses.filter((c) => (c.division ?? "lower") === "lower");
   const upper = courses.filter((c) => c.division === "upper");
-  const electives = courses.filter((c) => c.division === "elective" || c.division === "electives");
+  const electives = courses.filter(
+    (c) => c.division === "elective" || c.division === "electives"
+  );
   return { lower, upper, electives };
 }
 
@@ -177,7 +182,10 @@ function pruneDanglingEdges(nodes: Node<any>[], edges: Edge[]) {
 }
 
 function offsetNodes<T>(nodes: Node<T>[], dx: number, dy = 0): Node<T>[] {
-  return nodes.map((n) => ({ ...n, position: { x: n.position.x + dx, y: n.position.y + dy } }));
+  return nodes.map((n) => ({
+    ...n,
+    position: { x: n.position.x + dx, y: n.position.y + dy },
+  }));
 }
 
 /** Prefix IDs so graphs never collide; rewrite edges too. */
@@ -403,9 +411,7 @@ function CourseChat({
           <div className="px-4 py-3 border-b border-muted flex items-center justify-between">
             <div className="font-semibold">Course Recommender</div>
             <div className="flex items-center gap-2">
-              <div className="text-xs text-muted-foreground">
-                {loading ? "Thinking…" : "AI"}
-              </div>
+              <div className="text-xs text-muted-foreground">{loading ? "Thinking…" : "AI"}</div>
               <Button variant="stone" size="sm" onClick={() => setOpen(false)}>
                 Close
               </Button>
@@ -419,16 +425,12 @@ function CourseChat({
                 key={i}
                 className={[
                   "text-sm leading-relaxed rounded-xl px-3 py-2",
-                  m.role === "user"
-                    ? "bg-muted ml-10"
-                    : "bg-background border border-muted mr-10",
+                  m.role === "user" ? "bg-muted ml-10" : "bg-background border border-muted mr-10",
                 ].join(" ")}
               >
                 {m.role === "assistant" ? (
                   <div className="prose prose-sm max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:font-semibold">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {m.content}
-                    </ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
                   </div>
                 ) : (
                   <span>{m.content}</span>
@@ -554,10 +556,7 @@ function SkillTreeInner() {
   const slug = majorSlug ?? "computer-science";
 
   function canonizeCompletedId(raw: string): string {
-    const s = raw.trim();
-    const m = s.match(/^([A-Za-z]{2,8})\s*[-_ ]\s*([0-9]{1,3}[A-Za-z]{0,2})$/);
-    if (m) return `${m[1].toUpperCase()}-${m[2].toUpperCase()}`;
-    return s.toUpperCase().replace(/\s+/g, "").replace(/_/g, "-");
+    return raw.trim().toLowerCase().replace(/\s+/g, "_").replace(/-/g, "_");
   }
 
   // completion state (local, mutable)
@@ -569,9 +568,7 @@ function SkillTreeInner() {
     const ids = state?.completedIds ?? state?.completedCourseIds;
     if (!Array.isArray(ids)) return new Set<string>();
     return new Set(
-      ids
-        .filter((v): v is string => typeof v === "string")
-        .map((v) => canonizeCompletedId(v))
+      ids.filter((v): v is string => typeof v === "string").map((v) => canonizeCompletedId(v))
     );
   }, [location.state]);
 
@@ -622,14 +619,20 @@ function SkillTreeInner() {
     if (!rawCourses.length) return [];
 
     return rawCourses.map((c) => {
-      if (completedIds.has(c.id)) {
+      const cid = canonizeCompletedId(c.id);
+
+      if (completedIds.has(cid)) {
         return { ...c, status: "completed" as const, prerequisiteCount: 0 };
       }
 
       const total =
-        typeof c.prerequisiteCount === "number" ? c.prerequisiteCount : (c.prerequisites?.length ?? 0);
+        typeof c.prerequisiteCount === "number"
+          ? c.prerequisiteCount
+          : c.prerequisites?.length ?? 0;
 
-      const done = (c.prerequisites ?? []).filter((p) => completedIds.has(p)).length;
+      const done = (c.prerequisites ?? []).filter((p) => completedIds.has(canonizeCompletedId(p)))
+        .length;
+
       const remaining = Math.max(0, total - done);
 
       return {
@@ -663,41 +666,40 @@ function SkillTreeInner() {
   });
 
   const highlightTargets = useCallback(
-  (unprefixedCourseIds: string[], note?: string) => {
-    // We have 3 graphs (L/U/E). Targets might exist in only one.
-    // So we highlight any matching prefixed node IDs.
-    const prefixedTargets: string[] = [];
+    (unprefixedCourseIds: string[], note?: string) => {
+      // We have 3 graphs (L/U/E). Targets might exist in only one.
+      // So we highlight any matching prefixed node IDs.
+      const prefixedTargets: string[] = [];
 
-    const allIds = new Set(baseNodes.map((n) => n.id));
-    for (const id of unprefixedCourseIds) {
-      for (const pref of ["L:", "U:", "E:"] as const) {
-        const pid = `${pref}${id}`;
-        if (allIds.has(pid)) prefixedTargets.push(pid);
+      const allIds = new Set(baseNodes.map((n) => n.id));
+      for (const id of unprefixedCourseIds) {
+        for (const pref of ["L:", "U:", "E:"] as const) {
+          const pid = `${pref}${id}`;
+          if (allIds.has(pid)) prefixedTargets.push(pid);
+        }
       }
-    }
-    if (!prefixedTargets.length) return;
+      if (!prefixedTargets.length) return;
 
-    // Build a “branch-like” selection (closure only)
-    const closure = prereqClosure(prefixedTargets, baseEdges);
-    const edgesInBranch = new Set<string>();
-    for (const e of baseEdges) {
-      if (closure.has(e.source) && closure.has(e.target)) edgesInBranch.add(e.id);
-    }
+      // Build a “branch-like” selection (closure only)
+      const closure = prereqClosure(prefixedTargets, baseEdges);
+      const edgesInBranch = new Set<string>();
+      for (const e of baseEdges) {
+        if (closure.has(e.source) && closure.has(e.target)) edgesInBranch.add(e.id);
+      }
 
-    // Pick first target as “selected” for styling
-    setBranch({
-      selected: prefixedTargets[0],
-      ancestors: new Set([...closure].filter((x) => x !== prefixedTargets[0])),
-      descendants: new Set(), // optional: you can add unlocks too
-      edgesInBranch,
-    });
+      // Pick first target as “selected” for styling
+      setBranch({
+        selected: prefixedTargets[0],
+        ancestors: new Set([...closure].filter((x) => x !== prefixedTargets[0])),
+        descendants: new Set(), // optional: you can add unlocks too
+        edgesInBranch,
+      });
 
-    // optional: zoom to closure
-    // (If you want, we can also call fitView here via useReactFlow in a child controller)
-  },
-  [baseNodes, baseEdges]
-);
-
+      // optional: zoom to closure
+      // (If you want, we can also call fitView here via useReactFlow in a child controller)
+    },
+    [baseNodes, baseEdges]
+  );
 
   // node selection for modal
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -710,6 +712,11 @@ function SkillTreeInner() {
     return c ?? null;
   }, [activeCourseId, coursesWithStatus]);
 
+  const openCourseModal = useCallback((courseId: string) => {
+    setActiveCourseId(courseId);
+    setDialogOpen(true);
+  }, []);
+
   // branch highlight
   const [branch, setBranch] = useState<Branch | null>(null);
 
@@ -720,6 +727,8 @@ function SkillTreeInner() {
       setBaseEdges([]);
       return;
     }
+
+    const courseById = new Map(coursesWithStatus.map((c) => [c.id, c]));
 
     const { lower, upper, electives } = splitByGroup(coursesWithStatus);
 
@@ -741,6 +750,8 @@ function SkillTreeInner() {
     const electivesCollapsed = collapseIsolatedElectivesToBucket(
       electivesFlow.nodes as any,
       electivesFlow.edges as any,
+      courseById,
+      openCourseModal,
       "E:__electives_bucket__"
     );
 
@@ -748,10 +759,10 @@ function SkillTreeInner() {
     const lowerLaid = layoutDagre(lowerFlow.nodes as any, lowerFlow.edges, "LR");
     const upperLaid = layoutDagre(upperFlow.nodes as any, upperFlow.edges, "LR");
     const electivesLaid = layoutDagre(
-        electivesCollapsed.nodes as any,
-        electivesCollapsed.edges as any,
-        "LR"
-      );
+      electivesCollapsed.nodes as any,
+      electivesCollapsed.edges as any,
+      "LR"
+    );
 
     const lowerFlowLaid = { nodes: lowerLaid.nodes, edges: lowerLaid.edges };
     const upperFlowLaid = { nodes: upperLaid.nodes, edges: upperLaid.edges };
@@ -767,67 +778,50 @@ function SkillTreeInner() {
     const lowerBounds = computeBounds(lowerNodesNorm as any);
     const lowerWidth = lowerBounds.maxX - lowerBounds.minX;
 
-    const upperNodesNorm = offsetNodes(upperFlowLaid.nodes as any, normalizeLowerX + lowerWidth + gap, 0);
+    const upperNodesNorm = offsetNodes(
+      upperFlowLaid.nodes as any,
+      normalizeLowerX + lowerWidth + gap,
+      0
+    );
 
     const ub = computeBounds(upperNodesNorm as any);
     const upperWidth = ub.maxX - ub.minX;
 
-const electivesNodesNorm = offsetNodes(
-  electivesFlowLaid.nodes as any,
-  normalizeLowerX + lowerWidth + gap + upperWidth + gap,
-  0
-);
+    const electivesNodesNorm = offsetNodes(
+      electivesFlowLaid.nodes as any,
+      normalizeLowerX + lowerWidth + gap + upperWidth + gap,
+      0
+    );
 
-const BUCKET_ID = "E:__electives_bucket__";
+    const BUCKET_ID = "E:__electives_bucket__";
 
-// bounds of electives EXCLUDING the bucket
-const electivesNonBucket = electivesNodesNorm.filter((n) => n.id !== BUCKET_ID);
-const eb = computeBounds(electivesNonBucket);
+    // bounds of electives EXCLUDING the bucket
+    const electivesNonBucket = electivesNodesNorm.filter((n) => n.id !== BUCKET_ID);
+    const eb = computeBounds(electivesNonBucket);
 
-// pull bucket node out
-const bucket = electivesNodesNorm.find((n) => n.id === BUCKET_ID);
+    // pull bucket node out
+    const bucket = electivesNodesNorm.find((n) => n.id === BUCKET_ID);
 
-// if bucket exists, pin it to top-center of electives area
-const electivesNodesPinned = bucket
-  ? electivesNodesNorm.map((n) => {
-      if (n.id !== BUCKET_ID) return n;
+    // if bucket exists, pin it to top-center of electives area
+    const electivesNodesPinned = bucket
+      ? electivesNodesNorm.map((n) => {
+          if (n.id !== BUCKET_ID) return n;
 
-      const bucketW =
-        Number((n.style as any)?.width) ||
-        Number((n.data as any)?.width) ||
-        520;
+          const bucketW = Number((n.style as any)?.width) || 520;
+          const bucketH = Number((n.style as any)?.height) || 220;
 
-      const bucketH =
-        Number((n.style as any)?.height) ||
-        Number((n.data as any)?.height) ||
-        220;
+          const BUCKET_SHIFT_X = 160; // try 120–400
+          const centerX = (eb.minX + eb.maxX) / 2 - bucketW / 2 + BUCKET_SHIFT_X;
 
-      const BUCKET_SHIFT_X = 160; // try 120–400
-      const centerX = (eb.minX + eb.maxX) / 2 - bucketW / 2 + BUCKET_SHIFT_X;
+          const BUCKET_GAP = 200;
+          const topY = eb.minY - bucketH - BUCKET_GAP;
 
-      const BUCKET_GAP = 200;
-
-      const topY = eb.minY - bucketH - BUCKET_GAP;
-
-      return {
-        ...n,
-        position: { x: centerX, y: topY },
-      };
-    })
-  : electivesNodesNorm;
-
-
-
-    const electiveIds = new Set(electives.map(e => e.id));
-
-    const connected = new Set<string>();
-    for (const e of electivesFlowLaid.edges) {
-      connected.add(e.source.replace(/^E:/, ""));
-      connected.add(e.target.replace(/^E:/, ""));
-    }
-
-    const isolatedElectives = electives.filter(e => !connected.has(e.id));
-
+          return {
+            ...n,
+            position: { x: centerX, y: topY },
+          };
+        })
+      : electivesNodesNorm;
 
     const combinedNodes = [...lowerNodesNorm, ...upperNodesNorm, ...electivesNodesPinned];
     const combinedEdges = [
@@ -838,14 +832,15 @@ const electivesNodesPinned = bucket
 
     setBaseNodes(combinedNodes);
     setBaseEdges(combinedEdges);
-  }, [coursesWithStatus]);
-
+  }, [coursesWithStatus, openCourseModal]);
 
   // Apply status filters + branch highlight styling
   useEffect(() => {
     const filteredNodes = baseNodes.filter((n) => visibleStatus[getNodeStatus(n)]);
     const allowedIds = new Set(filteredNodes.map((n) => n.id));
-    const filteredEdges = baseEdges.filter((e) => allowedIds.has(e.source) && allowedIds.has(e.target));
+    const filteredEdges = baseEdges.filter(
+      (e) => allowedIds.has(e.source) && allowedIds.has(e.target)
+    );
 
     if (branch && allowedIds.has(branch.selected)) {
       const isAncestor = (id: string) => branch.ancestors.has(id);
@@ -943,17 +938,16 @@ const electivesNodesPinned = bucket
   ];
 
   // NOTE: one click should open modal; branch highlight uses that same click (after modal open)
-const onNodeClick = useCallback(
-  (_: any, node: Node<any>) => {
-    if (!node?.id) return;
-    // single click = highlight branch only
-    setBranch((prev) => (prev?.selected === node.id ? null : computeBranch(node.id, edges)));
-  },
-  [edges]
-);
+  const onNodeClick = useCallback(
+    (_: any, node: Node<any>) => {
+      if (!node?.id) return;
+      // single click = highlight branch only
+      setBranch((prev) => (prev?.selected === node.id ? null : computeBranch(node.id, edges)));
+    },
+    [edges]
+  );
 
-const onNodeDoubleClick = useCallback(
-  (_: any, node: Node<any>) => {
+  const onNodeDoubleClick = useCallback((_e: any, node: Node<any>) => {
     if (!node?.id) return;
 
     // double click = open modal
@@ -963,10 +957,7 @@ const onNodeDoubleClick = useCallback(
 
     setActiveCourseId(courseId);
     setDialogOpen(true);
-  },
-  []
-);
-
+  }, []);
 
   const onPaneClick = useCallback(() => {
     setBranch(null);
@@ -974,21 +965,27 @@ const onNodeDoubleClick = useCallback(
 
   const markCompleted = useCallback(() => {
     if (!activeCourseId) return;
+    const cid = canonizeCompletedId(activeCourseId);
+
     setCompletedIds((prev) => {
       const next = new Set(prev);
-      next.add(activeCourseId);
+      next.add(cid);
       return next;
     });
+
     setDialogOpen(false);
   }, [activeCourseId]);
 
   const unmarkCompleted = useCallback(() => {
     if (!activeCourseId) return;
+    const cid = canonizeCompletedId(activeCourseId);
+
     setCompletedIds((prev) => {
       const next = new Set(prev);
-      next.delete(activeCourseId);
+      next.delete(cid);
       return next;
     });
+
     setDialogOpen(false);
   }, [activeCourseId]);
 
@@ -1017,7 +1014,11 @@ const onNodeDoubleClick = useCallback(
       </motion.div>
 
       {/* Overlay Title */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="absolute top-4 left-1/2 -translate-x-1/2 z-20"
+      >
         <div className="px-10 py-4 rounded-2xl bg-card/70 backdrop-blur-xl border border-muted shadow-sm">
           <h1 className="font-display text-3xl font-extrabold text-gradient-dual text-center">
             {viewTitle}
@@ -1026,15 +1027,24 @@ const onNodeDoubleClick = useCallback(
       </motion.div>
 
       {/* Status Filter Panel */}
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="absolute top-16 right-4 z-20">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="absolute top-16 right-4 z-20"
+      >
         <div className="rounded-xl border-2 border-muted bg-card/90 backdrop-blur-md p-3 space-y-2">
           <div className="text-xs font-semibold text-muted-foreground">Show statuses</div>
 
           {STATUS_OPTIONS.map(([key, label]) => (
-            <label key={key} className="flex items-center gap-2 text-sm cursor-pointer select-none">
+            <label
+              key={key}
+              className="flex items-center gap-2 text-sm cursor-pointer select-none"
+            >
               <Checkbox
                 checked={visibleStatus[key]}
-                onCheckedChange={(v) => setVisibleStatus((prev) => ({ ...prev, [key]: Boolean(v) }))}
+                onCheckedChange={(v) =>
+                  setVisibleStatus((prev) => ({ ...prev, [key]: Boolean(v) }))
+                }
               />
               <span>{label}</span>
             </label>
@@ -1062,7 +1072,12 @@ const onNodeDoubleClick = useCallback(
         }}
         zoomOnDoubleClick={false}
       >
-        <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="hsl(220, 15%, 20%)" />
+        <Background
+          variant={BackgroundVariant.Dots}
+          gap={20}
+          size={1}
+          color="hsl(220, 15%, 20%)"
+        />
         <Controls className="!bg-card/80 !backdrop-blur-md !border-2 !border-muted !rounded-xl [&>button]:!bg-transparent [&>button]:!border-muted [&>button:hover]:!bg-muted" />
         <MiniMap
           className="!bg-card/80 !backdrop-blur-md !border-2 !border-muted !rounded-xl"
@@ -1112,7 +1127,7 @@ const onNodeDoubleClick = useCallback(
               Close
             </Button>
 
-            {completedIds.has(activeCourseId ?? "") ? (
+            {completedIds.has(canonizeCompletedId(activeCourseId ?? "")) ? (
               <Button variant="stone" onClick={unmarkCompleted}>
                 Mark Not Completed
               </Button>
@@ -1126,9 +1141,15 @@ const onNodeDoubleClick = useCallback(
       </Dialog>
 
       {/* Progress Summary */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-4 left-4 z-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="absolute bottom-4 left-4 z-20"
+      >
         <div className="rounded-xl border-2 border-muted bg-card/90 backdrop-blur-md p-4">
-          <h3 className="font-display font-semibold text-sm text-foreground mb-3">Progress Summary</h3>
+          <h3 className="font-display font-semibold text-sm text-foreground mb-3">
+            Progress Summary
+          </h3>
           <div className="grid grid-cols-3 gap-3 text-sm">
             <div className="flex flex-col">
               <span className="text-gold font-bold text-lg">{progress.completed}</span>
@@ -1145,12 +1166,8 @@ const onNodeDoubleClick = useCallback(
           </div>
         </div>
       </motion.div>
-<CourseChat
-  majorSlug={slug}
-  courses={coursesWithStatus}
-  onHighlightTargets={highlightTargets}
-/>
 
+      <CourseChat majorSlug={slug} courses={coursesWithStatus} onHighlightTargets={highlightTargets} />
     </div>
   );
 }

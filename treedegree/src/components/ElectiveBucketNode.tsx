@@ -15,11 +15,21 @@ type Item = {
   title?: string;
   status?: "completed" | "available" | "locked";
 };
+
 export type ElectiveBucketData = {
   label: string;
   title?: string;
   items: Item[];
+  onOpenCourse?: (courseId: string) => void; // ✅ NEW
 };
+
+// inside ElectiveBucketNode (top-level in the file)
+function statusColor(status?: "completed" | "available" | "locked") {
+  // EXACTLY matches your SkillTree MiniMap mapping
+  if (status === "completed") return "hsl(142, 70%, 45%)";
+  if (status === "available") return "hsl(195, 90%, 50%)";
+  return "hsl(220, 10%, 35%)";
+}
 
 export type ElectiveBucketNodeType = Node<ElectiveBucketData>;
 
@@ -57,39 +67,90 @@ export function ElectiveBucketNode({ data }: NodeProps<ElectiveBucketNodeType>) 
 
           <CollapsibleContent className="mt-3">
             <div
-                className="max-h-[260px] overflow-auto rounded-xl border border-muted bg-background/60 p-2 space-y-1"
-                onWheelCapture={(e) => {
-                    // prevent ReactFlow from zooming/panning
-                    e.stopPropagation();
-                }}
-                onPointerDownCapture={(e) => {
-                    // prevent drag-pan starting from inside the list
-                    e.stopPropagation();
-                }}
-                onPointerMoveCapture={(e) => {
-                    e.stopPropagation();
-                }}
-                onPointerUpCapture={(e) => {
-                    e.stopPropagation();
-                }}
-                >
+              className="max-h-[260px] overflow-auto rounded-xl border border-muted bg-background/60 p-2 space-y-1"
+              onWheelCapture={(e) => {
+                // prevent ReactFlow from zooming/panning
+                e.stopPropagation();
+              }}
+              onPointerDownCapture={(e) => {
+                // prevent drag-pan starting from inside the list
+                e.stopPropagation();
+              }}
+              onPointerMoveCapture={(e) => {
+                e.stopPropagation();
+              }}
+              onPointerUpCapture={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              {sorted.map((it) => {
+                const done = it.status === "completed";
+                const c = statusColor(it.status);
 
-              {sorted.map((it) => (
-                <div
-                  key={it.id}
-                  className="rounded-lg border border-muted bg-background px-2 py-2 text-sm"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="font-semibold">{it.label}</div>
-                    {it.status ? (
-                      <div className="text-xs text-muted-foreground">{it.status}</div>
+                return (
+                  <button
+                    key={it.id}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation(); // don't select bucket node / pan
+                      data.onOpenCourse?.(it.id); // ✅ open modal
+                    }}
+                    className={cn(
+                      "w-full text-left rounded-lg border px-6 py-4 transition",
+                      done
+                        ? [
+                            // ✅ EXACT same color as the mapping
+                            "bg-[hsl(142,70%,45%)]",
+                            "border-[hsl(142,70%,45%)]",
+                            // readable text on green background
+                            "text-white",
+                          ].join(" ")
+                        : "border-muted bg-background hover:bg-muted/40"
+                    )}
+                    // keep map (helper) untouched; we only use it for optional accents
+                    style={
+                      done
+                        ? undefined
+                        : {
+                            boxShadow: `inset 6px 0 0 0 ${c}`,
+                          }
+                    }
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <div
+                        className={cn(
+                          "font-semibold text-lg",
+                          done ? "text-white" : "text-foreground"
+                        )}
+                      >
+                        {it.label}
+                      </div>
+
+                      {it.status ? (
+                        <div
+                          className={cn(
+                            "text-sm",
+                            done ? "text-white/90" : "text-muted-foreground"
+                          )}
+                        >
+                          {it.status}
+                        </div>
+                      ) : null}
+                    </div>
+
+                    {it.title ? (
+                      <div
+                        className={cn(
+                          "text-sm",
+                          done ? "text-white/80" : "text-muted-foreground"
+                        )}
+                      >
+                        {it.title}
+                      </div>
                     ) : null}
-                  </div>
-                  {it.title ? (
-                    <div className="text-xs text-muted-foreground">{it.title}</div>
-                  ) : null}
-                </div>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           </CollapsibleContent>
         </Collapsible>
