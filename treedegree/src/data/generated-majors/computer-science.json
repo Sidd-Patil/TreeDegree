@@ -1,0 +1,1055 @@
+[
+  {
+    "id": "cmpsc_110",
+    "label": "CMPSC 110",
+    "title": "Introduction to Research in Computer Science",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_111",
+    "label": "CMPSC 111",
+    "title": "Introduction to Computational Science",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_130a",
+    "label": "CMPSC 130A",
+    "title": "Data Structures and Algorithms I",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_120a",
+      "ece_139"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_130b",
+    "label": "CMPSC 130B",
+    "title": "Data Structures and Algorithms II",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_132",
+    "label": "CMPSC 132",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_134",
+    "label": "CMPSC 134",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_138",
+    "label": "CMPSC 138",
+    "title": "Automata and Formal Languages",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_140",
+    "label": "CMPSC 140",
+    "title": "Parallel Scientific Computing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_148",
+    "label": "CMPSC 148",
+    "title": "Computer Science Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_148"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_154",
+    "label": "CMPSC 154",
+    "title": "Computer Architecture",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_154a",
+      "ece_154b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_156",
+    "label": "CMPSC 156",
+    "title": "Advanced Applications Programming",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_156"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_16",
+    "label": "CMPSC 16",
+    "title": "Problem Solving with Computers I",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_3"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_160",
+    "label": "CMPSC 160",
+    "title": "Translation of Programming Languages",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_162",
+    "label": "CMPSC 162",
+    "title": "Programming Languages",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_165a",
+    "label": "CMPSC 165A",
+    "title": "Artificial Intelligence",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_165b",
+    "label": "CMPSC 165B",
+    "title": "Machine Learning",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_170",
+    "label": "CMPSC 170",
+    "title": "Operating Systems",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_154a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_171",
+    "label": "CMPSC 171",
+    "title": "Distributed Systems",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_172",
+    "label": "CMPSC 172",
+    "title": "Software Engineering",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_174a",
+    "label": "CMPSC 174A",
+    "title": "Fundamentals of Database Systems",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_174b",
+    "label": "CMPSC 174B",
+    "title": "Design and Implementation Techniques of Database Systems",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_176a",
+    "label": "CMPSC 176A",
+    "title": "Introduction to Computer Communication Networks",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_32",
+      "pstat_120a",
+      "ece_139"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_176b",
+    "label": "CMPSC 176B",
+    "title": "Network Computing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_176c",
+    "label": "CMPSC 176C",
+    "title": "Advanced Topics in Internet Computing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_177",
+    "label": "CMPSC 177",
+    "title": "Computer Security",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_178",
+    "label": "CMPSC 178",
+    "title": "Introduction to Cryptography",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_120a",
+      "ece_139"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_180",
+    "label": "CMPSC 180",
+    "title": "Computer Graphics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_182",
+    "label": "CMPSC 182",
+    "title": "Multimedia Computing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_184",
+    "label": "CMPSC 184",
+    "title": "Mobile Application Development",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_185",
+    "label": "CMPSC 185",
+    "title": "Human-Computer Interaction",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_186",
+    "label": "CMPSC 186",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_188",
+    "label": "CMPSC 188",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_189a",
+    "label": "CMPSC 189A",
+    "title": "Senior Computer Systems Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_189a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_189b",
+    "label": "CMPSC 189B",
+    "title": "Senior Computer Systems Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_189a",
+      "ece_189a",
+      "ece_189b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_190aazz",
+    "label": "CMPSC 190AA-ZZ",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_192",
+    "label": "CMPSC 192",
+    "title": "Projects in Computer Science",
+    "units": null,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_196",
+    "label": "CMPSC 196",
+    "title": "Undergraduate Research",
+    "units": null,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_196b",
+    "label": "CMPSC 196B",
+    "title": "Undergraduate Research",
+    "units": null,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_196"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_24",
+    "label": "CMPSC 24",
+    "title": "Problem Solving with Computers II",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_24a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_24a",
+    "label": "CMPSC 24A",
+    "title": "Problem Solving with Computers II",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_32",
+    "label": "CMPSC 32",
+    "title": "Object Oriented Design and Implementation",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_40",
+    "label": "CMPSC 40",
+    "title": "Foundations of Computer Science",
+    "units": 5,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_64",
+    "label": "CMPSC 64",
+    "title": "Computer Organization and Logic Design",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpscece_153a",
+    "label": "CMPSC/ECE 153A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpscece_181",
+    "label": "CMPSC/ECE 181",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_10a",
+    "label": "ECE 10A",
+    "title": "Foundations of Analog and Digital Circuits & Systems",
+    "units": 3,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b"
+    ],
+    "unlocksCount": 18,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10al",
+    "label": "ECE 10AL",
+    "title": "Foundations of Analog and Digital Circuits and Systems Lab",
+    "units": 2,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10a"
+    ],
+    "unlocksCount": 9,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_130a",
+    "label": "ECE 130A",
+    "title": "Signal Analysis and Processing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_130b",
+    "label": "ECE 130B",
+    "title": "Signal Analysis and Processing",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_130c",
+    "label": "ECE 130C",
+    "title": "Introduction to Applied Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_139",
+    "label": "ECE 139",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 3,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_152a",
+    "label": "ECE 152A",
+    "title": "Digital Design Principles",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_15a",
+      "ece_10a",
+      "ece_10al"
+    ],
+    "unlocksCount": 8,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "ece_153b",
+    "label": "ECE 153B",
+    "title": "Sensor and Peripheral Interface Design",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_152a"
+    ],
+    "unlocksCount": 4,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_154a",
+    "label": "ECE 154A",
+    "title": "Introduction to Computer Architecture",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_152a",
+      "ece_154a"
+    ],
+    "unlocksCount": 6,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "ece_154b",
+    "label": "ECE 154B",
+    "title": "Advanced Computer Architecture",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_154a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_15a",
+    "label": "ECE 15A",
+    "title": "Fundamentals of Logic Design",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 9,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "ece_160",
+    "label": "ECE 160",
+    "title": "Multimedia Systems",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_182"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_178",
+    "label": "ECE 178",
+    "title": "Introduction to Digital Image and Video Processing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_189a",
+    "label": "ECE 189A",
+    "title": "Senior Computer Systems Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_153b"
+    ],
+    "unlocksCount": 4,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_189b",
+    "label": "ECE 189B",
+    "title": "Senior Computer Systems Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_189a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_3",
+    "label": "ECE 3",
+    "title": "INTRODUCTION TO ELECTRICAL ENGINEERING",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "engr_101",
+    "label": "ENGR 101",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "math_108a",
+    "label": "MATH 108A",
+    "title": "Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_108b",
+    "label": "MATH 108B",
+    "title": "Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_108a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_119a",
+    "label": "MATH 119A",
+    "title": "Ordinary Differential Equations",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_8"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_119b",
+    "label": "MATH 119B",
+    "title": "Chaotic Dynamics and Bifurcation Theory",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_119a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_124a",
+    "label": "MATH 124A",
+    "title": "Partial Differential Equations",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b",
+      "math_8"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "math_124b",
+    "label": "MATH 124B",
+    "title": "Fourier Series and Numerical Methods",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_2b",
+    "label": "MATH 2B",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34b",
+      "math_2b",
+      "math_3b"
+    ],
+    "unlocksCount": 210,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_34b",
+    "label": "MATH 34B",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 70,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_3a",
+    "label": "MATH 3A",
+    "title": "Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_3b",
+    "label": "MATH 3B",
+    "title": "Calculus with Applications, Second Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 70,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_4a",
+    "label": "MATH 4A",
+    "title": "Linear Algebra with Applications",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 68,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4ai",
+    "label": "MATH 4AI",
+    "title": "Inquiry Based Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a"
+    ],
+    "unlocksCount": 33,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4b",
+    "label": "MATH 4B",
+    "title": "Differential Equations",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a",
+      "math_4ai"
+    ],
+    "unlocksCount": 21,
+    "prerequisiteCount": 2,
+    "division": "lower"
+  },
+  {
+    "id": "math_6a",
+    "label": "MATH 6A",
+    "title": "Vector Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 11,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_8",
+    "label": "MATH 8",
+    "title": "Transition to Higher Mathematics",
+    "units": 5,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 7,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "pstat_10",
+    "label": "PSTAT 10",
+    "title": "Principles of Data Science with R",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "pstat_120a",
+    "label": "PSTAT 120A",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a",
+      "math_4ai",
+      "math_6a"
+    ],
+    "unlocksCount": 10,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_120b",
+    "label": "PSTAT 120B",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_120a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_122",
+    "label": "PSTAT 122",
+    "title": "Design and Analysis of Experiments",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_10",
+      "pstat_120b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_130",
+    "label": "PSTAT 130",
+    "title": "SAS Base Programming",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_160a",
+    "label": "PSTAT 160A",
+    "title": "Applied Stochastic Processes",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_8",
+      "pstat_120a",
+      "pstatw_160a",
+      "pstat_160a"
+    ],
+    "unlocksCount": 5,
+    "prerequisiteCount": 4,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_160b",
+    "label": "PSTAT 160B",
+    "title": "Applied Stochastic Processes",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_120b",
+      "pstat_160a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_8",
+    "label": "PSTAT 8",
+    "title": "Transition to Data Science, Probability and Statistics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_8"
+    ],
+    "unlocksCount": 4,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "pstatw_160a",
+    "label": "PSTATW 160A",
+    "title": "Applied Stochastic Processes",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_8",
+      "pstat_120a",
+      "pstatw_160a"
+    ],
+    "unlocksCount": 4,
+    "prerequisiteCount": 4,
+    "division": "upper"
+  }
+]

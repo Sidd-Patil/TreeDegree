@@ -1,0 +1,1265 @@
+[
+  {
+    "id": "chem_1a",
+    "label": "CHEM 1A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "chem_2a",
+    "label": "CHEM 2A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_16",
+    "label": "CMPSC 16",
+    "title": "Problem Solving with Computers I",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_3"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_181",
+    "label": "CMPSC 181",
+    "title": "Introduction to Computer Vision",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_181",
+      "cmpsc_181"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_182",
+    "label": "CMPSC 182",
+    "title": "Multimedia Computing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "cmpsc_8",
+    "label": "CMPSC 8",
+    "title": "Introduction to Computer Science",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_9",
+    "label": "CMPSC 9",
+    "title": "Intermediate Python Programming",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_8",
+      "ece_3"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10a",
+    "label": "ECE 10A",
+    "title": "Foundations of Analog and Digital Circuits & Systems",
+    "units": 3,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b"
+    ],
+    "unlocksCount": 49,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10al",
+    "label": "ECE 10AL",
+    "title": "Foundations of Analog and Digital Circuits and Systems Lab",
+    "units": 2,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10a"
+    ],
+    "unlocksCount": 14,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10b",
+    "label": "ECE 10B",
+    "title": "Foundations of Analog and Digital Circuits and Systems",
+    "units": 3,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10a"
+    ],
+    "unlocksCount": 7,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10bl",
+    "label": "ECE 10BL",
+    "title": "Foundations of Analog and Digital Circuits and Systems Lab",
+    "units": 2,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10c",
+    "label": "ECE 10C",
+    "title": "Foundations of Analog and Digital Circuits and Systems",
+    "units": 3,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10b"
+    ],
+    "unlocksCount": 5,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_10cl",
+    "label": "ECE 10CL",
+    "title": "Foundations of Analog and Digital Circuits and Systems Lab",
+    "units": 2,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10c"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "ece_120a",
+    "label": "ECE 120A",
+    "title": "Integrated Circuit Design and Fabrication",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_132"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_120b",
+    "label": "ECE 120B",
+    "title": "Integrated Circuit Design and Fabrication",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_122a",
+    "label": "ECE 122A",
+    "title": "VLSI Principles",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_152a",
+      "ece_123"
+    ],
+    "unlocksCount": 5,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "ece_122b",
+    "label": "ECE 122B",
+    "title": "VLSI Architecture and Design",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_123",
+      "ece_122a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "ece_123",
+    "label": "ECE 123",
+    "title": "High-Performance Digital Circuit Design",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10a",
+      "ece_10al",
+      "ece_122a"
+    ],
+    "unlocksCount": 5,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "ece_125",
+    "label": "ECE 125",
+    "title": "High Speed Digital Integrated Circuit Design",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_130a",
+    "label": "ECE 130A",
+    "title": "Signal Analysis and Processing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 20,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_130b",
+    "label": "ECE 130B",
+    "title": "Signal Analysis and Processing",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 3,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_130c",
+    "label": "ECE 130C",
+    "title": "Introduction to Applied Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_132",
+    "label": "ECE 132",
+    "title": "Introduction to Solid-State Electronic Devices",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 4,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_133",
+    "label": "ECE 133",
+    "title": "Introduction to Optimization and Learning",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_134",
+    "label": "ECE 134",
+    "title": "Introduction to Fields and Waves",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 2,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_135",
+    "label": "ECE 135",
+    "title": "Optical Fiber Communications",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_132"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_136a",
+    "label": "ECE 136A",
+    "title": "Introduction to Optics and Photonics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_136b",
+    "label": "ECE 136B",
+    "title": "Optics and Imaging",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_136c",
+    "label": "ECE 136C",
+    "title": "Quantum Photonics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_137a",
+    "label": "ECE 137A",
+    "title": "Circuits and Electronics I",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10a"
+    ],
+    "unlocksCount": 11,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_137b",
+    "label": "ECE 137B",
+    "title": "Circuits and Electronics II",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_10c",
+      "ece_137a"
+    ],
+    "unlocksCount": 3,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "ece_139",
+    "label": "ECE 139",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_141a",
+    "label": "ECE 141A",
+    "title": "Introduction To Nanoelectromechanical and Microelectromechanical Systems(NEMS/MEMS)",
+    "units": 3,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_141b",
+    "label": "ECE 141B",
+    "title": "MEMS: Processing and Device Characterization",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_141a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_142",
+    "label": "ECE 142",
+    "title": "INTRODUCTION TO POWER ELECTRONICS",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_132",
+      "ece_134",
+      "ece_137a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "ece_144",
+    "label": "ECE 144",
+    "title": "Electromagnetic Fields and Waves",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_134"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_145a",
+    "label": "ECE 145A",
+    "title": "Communication Electronics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_137a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_145b",
+    "label": "ECE 145B",
+    "title": "Communication Electronics II",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_145a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_145c",
+    "label": "ECE 145C",
+    "title": "Communication Electronics III",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_145b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_146a",
+    "label": "ECE 146A",
+    "title": "Digital Communication Fundamentals",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_146b",
+    "label": "ECE 146B",
+    "title": "COMMUNICATION SYSTEMS DESIGN",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_147a",
+    "label": "ECE 147A",
+    "title": "Feedback Control Systems - Theory and Design",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_147b",
+    "label": "ECE 147B",
+    "title": "Digital Control Systems - Theory and Design",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_147a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_147c",
+    "label": "ECE 147C",
+    "title": "Control System Design Project",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_147a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_148",
+    "label": "ECE 148",
+    "title": "Applications of Signal Analysis and Processing",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_149",
+    "label": "ECE 149",
+    "title": "Game Theory for Networked Systems",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_152a",
+    "label": "ECE 152A",
+    "title": "Digital Design Principles",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "ece_15a",
+      "ece_10a",
+      "ece_10al"
+    ],
+    "unlocksCount": 9,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "ece_152b",
+    "label": "ECE 152B",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_153a",
+    "label": "ECE 153A",
+    "title": "Hardware/Software Interface",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_153b",
+    "label": "ECE 153B",
+    "title": "Sensor and Peripheral Interface Design",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_152a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_154a",
+    "label": "ECE 154A",
+    "title": "Introduction to Computer Architecture",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_152a",
+      "ece_154a"
+    ],
+    "unlocksCount": 3,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "ece_154b",
+    "label": "ECE 154B",
+    "title": "Advanced Computer Architecture",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_154a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_157a",
+    "label": "ECE 157A",
+    "title": "Machine Learning in Design and Test Automation",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_152a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_157b",
+    "label": "ECE 157B",
+    "title": "Artificial Intelligence in Design and Test Automation",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_157a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_157c",
+    "label": "ECE 157C",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_158",
+    "label": "ECE 158",
+    "title": "Digital Signal Processing",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_15a",
+    "label": "ECE 15A",
+    "title": "Fundamentals of Logic Design",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 10,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "ece_160",
+    "label": "ECE 160",
+    "title": "Multimedia Systems",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_182"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_162a",
+    "label": "ECE 162A",
+    "title": "The Quantum Description of Electronic Materials",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_162b",
+    "label": "ECE 162B",
+    "title": "Fundamentals of the Solid State",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_162a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_162c",
+    "label": "ECE 162C",
+    "title": "Optoelectronic Materials and Devices",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_162a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_178",
+    "label": "ECE 178",
+    "title": "Introduction to Digital Image and Video Processing",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_179d",
+    "label": "ECE 179D",
+    "title": "INTRODUCTION TO ROBOTICS: DYNAMICS AND CONTROL",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_179p",
+    "label": "ECE 179P",
+    "title": "Introduction to Robotics: Planning and Kinematics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130c"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_180",
+    "label": "ECE 180",
+    "title": "INTRODUCTION TO DEEP LEARNING",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_181",
+    "label": "ECE 181",
+    "title": "Introduction to Computer Vision",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_181"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_183",
+    "label": "ECE 183",
+    "title": "Nonlinear Phenomena",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_184",
+    "label": "ECE 184",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_186",
+    "label": "ECE 186",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_188a",
+    "label": "ECE 188A",
+    "title": "Senior Electrical Engineering Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_130a",
+      "ece_130b",
+      "ece_137a",
+      "ece_137b"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 4,
+    "division": "upper"
+  },
+  {
+    "id": "ece_188b",
+    "label": "ECE 188B",
+    "title": "Senior Electrical Engineering Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_188a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_188c",
+    "label": "ECE 188C",
+    "title": "Senior Electrical Engineering Project",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_188b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "ece_192",
+    "label": "ECE 192",
+    "title": "Projects in Electrical and Computer Engineering",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_194aazz",
+    "label": "ECE 194AA-ZZ",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_196",
+    "label": "ECE 196",
+    "title": "Undergraduate Research",
+    "units": null,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "ece_3",
+    "label": "ECE 3",
+    "title": "INTRODUCTION TO ELECTRICAL ENGINEERING",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 2,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "ece_5",
+    "label": "ECE 5",
+    "title": "Introduction to Electrical & Computer Engineering",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "ece_6",
+    "label": "ECE 6",
+    "title": "The Physics of Energy, Information, and Communication",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "engr_101",
+    "label": "ENGR 101",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "math_2a",
+    "label": "MATH 2A",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_3a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_2b",
+    "label": "MATH 2B",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34b",
+      "math_2b",
+      "math_3b"
+    ],
+    "unlocksCount": 323,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_34a",
+    "label": "MATH 34A",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_34b",
+    "label": "MATH 34B",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 108,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_3a",
+    "label": "MATH 3A",
+    "title": "Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_3b",
+    "label": "MATH 3B",
+    "title": "Calculus with Applications, Second Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 108,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_4a",
+    "label": "MATH 4A",
+    "title": "Linear Algebra with Applications",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 106,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4ai",
+    "label": "MATH 4AI",
+    "title": "Inquiry Based Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a"
+    ],
+    "unlocksCount": 53,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4b",
+    "label": "MATH 4B",
+    "title": "Differential Equations",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a",
+      "math_4ai"
+    ],
+    "unlocksCount": 52,
+    "prerequisiteCount": 2,
+    "division": "lower"
+  },
+  {
+    "id": "math_6a",
+    "label": "MATH 6A",
+    "title": "Vector Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_6b",
+    "label": "MATH 6B",
+    "title": "Vector calculus with Applications, Second Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "matrl_100a",
+    "label": "MATRL 100A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "matrl_100b",
+    "label": "MATRL 100B",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "matrl_100c",
+    "label": "MATRL 100C",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "matrl_101",
+    "label": "MATRL 101",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "matrl_162a",
+    "label": "MATRL 162A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "matrl_162b",
+    "label": "MATRL 162B",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "phys_7a",
+    "label": "PHYS 7A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "phys_7b",
+    "label": "PHYS 7B",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "phys_7c",
+    "label": "PHYS 7C",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "phys_7d",
+    "label": "PHYS 7D",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "phys_7l",
+    "label": "PHYS 7L",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "tmp_120",
+    "label": "TMP 120",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "tmp_122",
+    "label": "TMP 122",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  }
+]

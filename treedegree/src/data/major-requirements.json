@@ -1,0 +1,793 @@
+[
+  {
+    "schema_version": "1.0",
+    "source": {
+      "file_name": "Statistics & Data Science BS Major (2025).pdf",
+      "path": "/mnt/data/Statistics & Data Science BS Major (2025).pdf",
+      "doc_id": null,
+      "extracted_at": "2026-01-10",
+      "pages": 1
+    },
+    "program": {
+      "institution": "University of California, Santa Barbara",
+      "college": "College of Letters and Science",
+      "department": "Statistics and Applied Probability",
+      "major_name": "Statistics and Data Science",
+      "degree": "B.S.",
+      "academic_year": "2025-2026",
+      "contacts": [
+        { "type": "office", "value": "5607A South Hall" },
+        { "type": "phone", "value": "805-893-2129" },
+        { "type": "website", "value": "http://www.pstat.ucsb.edu" }
+      ]
+    },
+    "policies": {
+      "admission": [
+        {
+          "id": "policy.premajor_gpa",
+          "text": "To be admitted to the full major, students must complete all pre-major courses with a 2.5 or higher UC grade-point average.",
+          "constraints": { "min_gpa": 2.5, "scope": "pre_major_courses" }
+        },
+        {
+          "id": "policy.premajor_grade_min",
+          "text": "All pre-major courses must be completed with a grade of “C” or better.",
+          "constraints": { "min_grade": "C", "scope": "pre_major_courses" }
+        },
+        {
+          "id": "policy.repeats_premajor",
+          "text": "Students are permitted to repeat a maximum of two pre-major courses. Only one repeat is allowed in each course.",
+          "constraints": { "max_repeats_total": 2, "max_repeats_per_course": 1, "scope": "pre_major_courses" }
+        },
+        {
+          "id": "policy.prep_cmpsc_grade_min",
+          "text": "Students must complete Computer Science 8 and either 9 or 16 with a grade of “C” or better. Only one repeat is allowed in each preparation for the major and pre-major requirement.",
+          "constraints": { "min_grade": "C", "max_repeats_per_course": 1, "scope": "preparation_and_premajor" }
+        }
+      ],
+      "grading": [
+        {
+          "id": "policy.pnp_not_allowed",
+          "text": "P/NP grading option not allowed for any major course (prep or UD major), including courses applied to the major from other departments.",
+          "constraints": { "pnp_allowed": false, "scope": "all_major_courses" }
+        }
+      ],
+      "regulations": [
+        { "id": "policy.prereqs_catalog", "text": "Check the General Catalog for prerequisites to all listed courses." },
+        { "id": "policy.substitutions", "text": "Substitutions permissible only by petition to the department chair and dean." },
+        { "id": "policy.major_gpa", "text": "At least 2.0 overall UC average in all upper-division major courses and all courses (Prep and UD) for the major.", "constraints": { "min_gpa": 2.0, "scope": "prep_and_ud_major" } },
+        { "id": "policy.double_major_overlap", "text": "With approval, up to a total of 8 units may be applied simultaneously to both UD majors.", "constraints": { "max_overlap_units": 8, "scope": "ud_majors" } }
+      ]
+    },
+    "requirements": [
+      {
+        "id": "req.pre_major",
+        "title": "Pre-Major Units to Complete",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          {
+            "id": "req.pre_major.math_core",
+            "type": "requirement_group",
+            "operator": "AND",
+            "unit_range": { "min": 20, "max": 22 },
+            "children": [
+              {
+                "id": "req.pre_major.calc_sequence",
+                "type": "requirement_group",
+                "operator": "OR",
+                "children": [
+                  { "type": "course_sequence", "subject": "MATH", "courses": ["2A", "2B"] },
+                  { "type": "course_sequence", "subject": "MATH", "courses": ["3A", "3B"] }
+                ]
+              },
+              { "type": "course_sequence", "subject": "MATH", "courses": ["4A", "4B"] },
+              { "type": "course_list", "subject": "MATH", "courses": ["6A"] }
+            ]
+          },
+          {
+            "id": "req.pre_major.probability",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 5,
+            "children": [
+              { "type": "course", "course_id": "MATH-8" },
+              { "type": "course", "course_id": "PSTAT-8" }
+            ],
+            "footnote_refs": ["fn.math8_or_pstat8"]
+          },
+          { "id": "req.pre_major.pstat10", "type": "course", "course_id": "PSTAT-10", "units": 5 }
+        ]
+      },
+      {
+        "id": "req.prep_for_major",
+        "title": "Preparation for the Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          { "type": "course", "course_id": "CMPSC-8", "units": 4, "aliases": ["CMPSC-W8"] },
+          {
+            "id": "req.prep.cs9_or_16",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 4,
+            "children": [
+              { "type": "course", "course_id": "CMPSC-9" },
+              { "type": "course", "course_id": "CMPSC-16" }
+            ],
+            "notes": [
+              "CMPSC 9 is recommended over CMPSC 16.",
+              "Students cannot get credit for CMPSC 8 at UCSB if transferring in credit for CMPSC 9 or 16; see department advisors."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "req.upper_division",
+        "title": "Upper-Division Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "total_units": 48,
+        "children": [
+          {
+            "id": "req.ud.A",
+            "title": "A",
+            "type": "course_list",
+            "units": 8,
+            "courses": ["PSTAT-120A", "PSTAT-120B"],
+            "aliases": { "PSTAT-120A": ["PSTAT-W120A"] }
+          },
+          { "id": "req.ud.B", "title": "B", "type": "course_list", "units": 8, "courses": ["PSTAT-122", "PSTAT-126"] },
+          {
+            "id": "req.ud.C",
+            "title": "C",
+            "type": "choose_units",
+            "units": 24,
+            "from": { "subject": "PSTAT", "rule": "elective_pstat_courses" }
+          },
+          {
+            "id": "req.ud.D",
+            "title": "D",
+            "type": "choose_units",
+            "units": 8,
+            "from": {
+              "allow_other_pstat_not_used_above": true,
+              "courses": [
+                "MATH-104A", "MATH-104B", "MATH-104C",
+                "MATH-108A", "MATH-108B",
+                "MATH-111A", "MATH-111B", "MATH-111C",
+                "MATH-117",
+                "MATH-118A", "MATH-118B", "MATH-118C",
+                "MATH-132A", "MATH-132B",
+                "ECON-100B", "ECON-101", "ECON-134A", "ECON-134B"
+              ]
+            }
+          }
+        ],
+        "exclusions": {
+          "not_applicable_courses": [
+            "MATH-100A", "MATH-100B", "MATH-101A", "MATH-101B", "MATH-102A", "MATH-102B", "MATH-193",
+            "PSTAT-109", "PSTAT-182T", "PSTAT-W182T", "PSTAT-188", "PSTAT-190", "PSTAT-193"
+          ]
+        },
+        "notes": [
+          "Guide to PSTAT Courses: Probability and Statistics Theory; Data Science and Applied Statistics; Actuarial and Financial Mathematics; Stochastic Modelling; Graduate school recommendations."
+        ]
+      }
+    ],
+    "footnotes": [
+      {
+        "id": "fn.math8_or_pstat8",
+        "marker": "*",
+        "text": "Either Math 4A, 4B, 6A, or 6B must be completed with a grade of \"B\" or better to take Math 8 or PSTAT 8. Math 8 is a prerequisite for all upper division Math courses except Math 117, 104A, 104B, and 104C; if you plan additional UD Math courses, you must take Math 8.",
+        "applies_to": ["req.pre_major.probability"]
+      }
+    ],
+    "graph": {
+      "nodes": [
+        { "id": "req:req.pre_major", "type": "requirement", "label": "Pre-Major" },
+        { "id": "req:req.prep_for_major", "type": "requirement", "label": "Preparation for Major" },
+        { "id": "req:req.upper_division", "type": "requirement", "label": "Upper-Division Major" },
+        { "id": "course:PSTAT-120A", "type": "course", "label": "PSTAT 120A" }
+      ],
+      "edges": [
+        { "from": "req:req.upper_division", "to": "course:PSTAT-120A", "type": "includes" }
+      ]
+    },
+    "raw": { "lines": [] }
+  },
+
+  {
+    "schema_version": "1.0",
+    "source": {
+      "file_name": "Mathematics BS Major (2025).pdf",
+      "path": "/mnt/data/Mathematics BS Major (2025).pdf",
+      "doc_id": null,
+      "extracted_at": "2026-01-10",
+      "pages": 1
+    },
+    "program": {
+      "institution": "University of California, Santa Barbara",
+      "college": "College of Letters and Science",
+      "department": "Mathematics",
+      "major_name": "Mathematics",
+      "degree": "B.S.",
+      "academic_year": "2025-2026",
+      "contacts": [
+        { "type": "office", "value": "6607 South Hall" },
+        { "type": "phone", "value": "805-893-2171" },
+        { "type": "website", "value": "http://www.math.ucsb.edu" }
+      ]
+    },
+    "policies": {
+      "admission": [
+        {
+          "id": "policy.premajor_gpa",
+          "text": "To be admitted to full major status, students must complete the following pre-major Mathematics courses with a UC grade-point average of 2.5 or higher.",
+          "constraints": { "min_gpa": 2.5, "scope": "pre_major_courses" }
+        },
+        {
+          "id": "policy.premajor_grade_min",
+          "text": "All pre-major courses must be completed with a grade of “C” or better.",
+          "constraints": { "min_grade": "C", "scope": "pre_major_courses" }
+        },
+        {
+          "id": "policy.prep_excluded_from_premajor_gpa",
+          "text": "Preparation courses are excluded from the pre-major GPA, but will apply to the overall major GPA.",
+          "constraints": { "excluded_from_premajor_gpa": true, "scope": "preparation_courses" }
+        }
+      ],
+      "grading": [
+        {
+          "id": "policy.pnp_not_allowed",
+          "text": "P/NP not allowed for major courses (prep or UD major), including courses applied to the major from other departments.",
+          "constraints": { "pnp_allowed": false, "scope": "all_major_courses" }
+        }
+      ],
+      "regulations": [
+        { "id": "policy.prereqs_catalog", "text": "Check the General Catalog for the prerequisites to all listed courses." },
+        { "id": "policy.substitutions", "text": "Substitutions permissible only by petition to the department chair and dean." },
+        { "id": "policy.major_gpa", "text": "At least 2.0 overall UC average in all upper-division major courses and all courses (Prep and UD) for the major.", "constraints": { "min_gpa": 2.0, "scope": "prep_and_ud_major" } },
+        { "id": "policy.double_major_overlap", "text": "With approval, up to a total of 8 units may be applied simultaneously to both UD majors.", "constraints": { "max_overlap_units": 8, "scope": "ud_majors" } }
+      ]
+    },
+    "requirements": [
+      {
+        "id": "req.pre_major",
+        "title": "Pre-Major Units to Complete",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          {
+            "id": "req.pre_major.calc",
+            "type": "requirement_group",
+            "operator": "OR",
+            "unit_range": { "min": 8, "max": 10 },
+            "children": [
+              { "type": "course_sequence", "subject": "MATH", "courses": ["2A", "2B"] },
+              { "type": "course_sequence", "subject": "MATH", "courses": ["3A", "3B"] }
+            ]
+          },
+          { "id": "req.pre_major.4ab", "type": "course_sequence", "subject": "MATH", "courses": ["4A", "4B"], "units": 8 },
+          { "id": "req.pre_major.6ab", "type": "course_sequence", "subject": "MATH", "courses": ["6A", "6B"], "units": 8 },
+          { "id": "req.pre_major.math8", "type": "course", "course_id": "MATH-8", "units": 5, "footnote_refs": ["fn.math8_prereq_grade"] }
+        ]
+      },
+      {
+        "id": "req.prep_for_major",
+        "title": "Preparation for the Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          {
+            "id": "req.prep.cs_choice",
+            "type": "choose_one",
+            "from": ["CMPSC-8", "CMPSC-9", "CMPSC-16", "ENGR-3"],
+            "unit_range": { "min": 3, "max": 4 }
+          },
+          {
+            "id": "req.prep.physics_choice",
+            "type": "choose_one",
+            "from": ["PHYS-1", "PHYS-6A", "PHYS-7A", "PHYS-21"],
+            "unit_range": { "min": 3, "max": 4 }
+          }
+        ]
+      },
+      {
+        "id": "req.upper_division",
+        "title": "Upper-Division Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "total_units": 52,
+        "constraints": { "min_math_ud_units": 40 },
+        "children": [
+          {
+            "id": "req.ud.core_32",
+            "type": "course_list",
+            "units": 32,
+            "courses": ["MATH-108A", "MATH-108B", "MATH-111A", "MATH-111B", "MATH-117", "MATH-118A", "MATH-118B", "MATH-122A"]
+          },
+          {
+            "id": "req.ud.choice_4",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 4,
+            "children": [
+              { "type": "course", "course_id": "MATH-111C" },
+              { "type": "course", "course_id": "MATH-118C" }
+            ]
+          },
+          {
+            "id": "req.ud.choice_145_147a",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 4,
+            "children": [
+              { "type": "course", "course_id": "MATH-145" },
+              { "type": "course", "course_id": "MATH-147A" }
+            ]
+          },
+          {
+            "id": "req.ud.electives_12",
+            "type": "choose_units",
+            "units": 12,
+            "from": { "subjects": ["MATH", "PSTAT"], "rule": "upper_division_electives" }
+          }
+        ],
+        "exclusions": {
+          "not_applicable_courses": ["MATH-100A", "MATH-100B", "MATH-193", "MATH-195A", "MATH-195B", "PSTAT-109", "PSTAT-188", "PSTAT-190", "PSTAT-193"]
+        },
+        "notes": [
+          "With advisor approval, 4 of the 52 UD units may be non-mathematics courses as part of a coherent mathematics program."
+        ]
+      }
+    ],
+    "footnotes": [
+      {
+        "id": "fn.math8_prereq_grade",
+        "marker": "*",
+        "text": "Either Math 4A, 4B, 6A, or 6B must be completed with a grade of “B” or better in order to take Math 8.",
+        "applies_to": ["req.pre_major.math8"]
+      }
+    ],
+    "graph": { "nodes": [], "edges": [] },
+    "raw": { "lines": [] }
+  },
+
+  {
+    "schema_version": "1.0",
+    "source": {
+      "file_name": "Economics Major (2025).pdf",
+      "path": "/mnt/data/Economics Major (2025).pdf",
+      "doc_id": null,
+      "extracted_at": "2026-01-10",
+      "pages": 1
+    },
+    "program": {
+      "institution": "University of California, Santa Barbara",
+      "college": "College of Letters and Science",
+      "department": "Economics",
+      "major_name": "Economics",
+      "degree": "B.A.",
+      "academic_year": "2025-2026",
+      "contacts": [
+        { "type": "office", "value": "2121 North Hall" },
+        { "type": "phone", "value": "805-893-2981" },
+        { "type": "website", "value": "http://www.econ.ucsb.edu" }
+      ]
+    },
+    "policies": {
+      "admission": [
+        {
+          "id": "policy.admission_premajor_gpa",
+          "text": "To qualify for admission, complete Economics 1, 2, and 10A with a UC GPA of 2.85 or above; no grade lower than a C in pre-major courses accepted.",
+          "constraints": { "min_gpa": 2.85, "min_grade": "C", "scope": "econ_1_2_10a" }
+        },
+        {
+          "id": "policy.additional_prep_required",
+          "text": "Complete Economics 5 or PSTAT 120A and Math 2A-B or 3A-B or 34A-B with a grade of “C” or higher; these grades are excluded from the pre-major GPA but apply to the overall major GPA.",
+          "constraints": { "min_grade": "C", "excluded_from_premajor_gpa": true, "scope": "econ5_or_pstat120a_and_math_seq" }
+        },
+        {
+          "id": "policy.ucsb_only_courses",
+          "text": "Econ 5 and Econ 10A must be taken at UCSB.",
+          "constraints": { "must_take_at_ucsb": ["ECON-5", "ECON-10A"] }
+        }
+      ],
+      "grading": [
+        {
+          "id": "policy.pnp_not_allowed",
+          "text": "P/NP not allowed for major courses (prep or UD major), including courses applied to the major from other departments.",
+          "constraints": { "pnp_allowed": false, "scope": "all_major_courses" }
+        }
+      ],
+      "regulations": [
+        { "id": "policy.prereqs_catalog", "text": "Check the General Catalog for the prerequisites to all listed courses." },
+        { "id": "policy.substitutions", "text": "Substitutions permissible only by petition to the department chair and dean." },
+        { "id": "policy.major_gpa", "text": "At least 2.0 overall UC average in all upper-division major courses and all courses (Prep and UD) for the major.", "constraints": { "min_gpa": 2.0, "scope": "prep_and_ud_major" } },
+        { "id": "policy.double_major_overlap", "text": "With approval, up to a total of 8 units may be applied simultaneously to both UD majors.", "constraints": { "max_overlap_units": 8, "scope": "ud_majors" } }
+      ]
+    },
+    "requirements": [
+      {
+        "id": "req.pre_major",
+        "title": "Pre-Major Units to Complete",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          { "id": "req.pre_major.econ_1_2", "type": "course_list", "courses": ["ECON-1", "ECON-2"], "units": 10 },
+          { "id": "req.pre_major.econ_10a", "type": "course", "course_id": "ECON-10A", "units": 5 }
+        ]
+      },
+      {
+        "id": "req.prep_for_major",
+        "title": "Preparation for the Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          {
+            "id": "req.prep.econ5_or_pstat120a",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 5,
+            "children": [
+              { "type": "course", "course_id": "ECON-5" },
+              { "type": "course", "course_id": "PSTAT-120A" }
+            ]
+          },
+          {
+            "id": "req.prep.math_seq",
+            "type": "choose_one_sequence",
+            "unit_range": { "min": 8, "max": 10 },
+            "options": [
+              { "type": "course_sequence", "subject": "MATH", "courses": ["2A", "2B"] },
+              { "type": "course_sequence", "subject": "MATH", "courses": ["3A", "3B"] },
+              { "type": "course_sequence", "subject": "MATH", "courses": ["34A", "34B"] }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "req.upper_division",
+        "title": "Upper-Division Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "total_units": 40,
+        "children": [
+          { "id": "req.ud.A", "title": "A", "type": "course", "course_id": "ECON-100B", "units": 4 },
+          { "id": "req.ud.B", "title": "B", "type": "course", "course_id": "ECON-101", "units": 4 },
+          { "id": "req.ud.C", "title": "C", "type": "course", "course_id": "ECON-140A", "units": 4 },
+          {
+            "id": "req.ud.D",
+            "title": "D",
+            "type": "choose_courses",
+            "count": 6,
+            "units": 24,
+            "from": {
+              "subject": "ECON",
+              "courses": [
+                "ECON-100C", "ECON-106", "ECON-107A", "ECON-107B",
+                "ECON-112A", "ECON-112B", "ECON-113A", "ECON-113B",
+                "ECON-114A", "ECON-114B", "ECON-115",
+                "ECON-116A", "ECON-116B", "ECON-116C",
+                "ECON-117A", "ECON-120", "ECON-122", "ECON-127",
+                "ECON-130", "ECON-133",
+                "ECON-134A", "ECON-134B", "ECON-134C",
+                "ECON-135",
+                "ECON-140B", "ECON-140C",
+                "ECON-141", "ECON-145",
+                "ECON-150A", "ECON-151", "ECON-152", "ECON-153", "ECON-154", "ECON-155", "ECON-156", "ECON-157",
+                "ECON-160", "ECON-164",
+                "ECON-170", "ECON-171",
+                "ECON-174", "ECON-176", "ECON-177",
+                "ECON-180", "ECON-181", "ECON-183", "ECON-184",
+                "ECON-187",
+                "ECON-191AA-ZZ", "ECON-196A", "ECON-196B", "ECON-199"
+              ]
+            },
+            "constraints": { "max_units_from": { "ECON-199": 4 }, "excludes": ["ECON-199RA"] }
+          },
+          {
+            "id": "req.ud.E",
+            "title": "E",
+            "type": "choose_courses",
+            "count": 1,
+            "units": 4,
+            "from": {
+              "either": [
+                { "ref_requirement_id": "req.ud.D" },
+                { "courses": ["ECON-118", "ECON-136A", "ECON-136B", "ECON-136C", "ECON-137A", "ECON-137B", "ECON-138A", "ECON-138B", "ECON-185"] }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "footnotes": [],
+    "graph": { "nodes": [], "edges": [] },
+    "raw": { "lines": [] }
+  },
+
+  {
+    "schema_version": "1.0",
+    "source": {
+      "file_name": "UCSBCompSci.pdf",
+      "path": "/mnt/data/UCSBCompSci.pdf",
+      "doc_id": null,
+      "extracted_at": "2026-01-10",
+      "pages": 1
+    },
+    "program": {
+      "institution": "University of California, Santa Barbara",
+      "college": null,
+      "department": "Computer Science",
+      "major_name": "Computer Science",
+      "degree": null,
+      "academic_year": "2025-2026",
+      "contacts": []
+    },
+    "policies": {
+      "grading": [
+        {
+          "id": "policy.letter_grade_required",
+          "text": "To satisfy major requirements, courses taken inside or outside the Department of Computer Science must be taken for a letter grade.",
+          "constraints": { "letter_grade_required": true, "scope": "major_courses" }
+        }
+      ],
+      "admission": [],
+      "regulations": []
+    },
+    "requirements": [
+      {
+        "id": "req.prep_for_major",
+        "title": "Preparation for the Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "total_units": 45,
+        "children": [
+          { "type": "course", "course_id": "CMPSC-16", "units": 4 },
+          { "type": "course", "course_id": "CMPSC-24", "units": 4 },
+          { "type": "course", "course_id": "CMPSC-32", "units": 4 },
+          { "type": "course", "course_id": "CMPSC-40", "units": 5 },
+          { "type": "course", "course_id": "CMPSC-64", "units": 4 },
+          { "type": "course_sequence", "subject": "MATH", "courses": ["3A", "3B", "4A", "4B", "6A"], "units": 20 },
+          { "type": "course", "course_id": "PSTAT-120A", "units": 4 }
+        ]
+      },
+      {
+        "id": "req.upper_division",
+        "title": "Upper Division Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "total_units": 67,
+        "children": [
+          { "type": "course_sequence", "subject": "CMPSC", "courses": ["130A", "130B"], "units": 8 },
+          { "type": "course", "course_id": "ENGR-101", "units": 3 },
+          {
+            "id": "req.ud.major_field_electives",
+            "title": "Major Field Electives",
+            "type": "choose_courses",
+            "count": 14,
+            "units": 56,
+            "constraints": { "min_courses_from_subject": { "CMPSC": 7 } },
+            "from": {
+              "courses": [
+                "CMPSC-110", "CMPSC-111", "CMPSC-132", "CMPSC-134", "CMPSC-138", "CMPSC-140", "CMPSC-148",
+                "CMPSC/ECE-153A", "CMPSC-154", "CMPSC-156", "CMPSC-160", "CMPSC-162",
+                "CMPSC-165A", "CMPSC-165B",
+                "CMPSC-170", "CMPSC-171", "CMPSC-172",
+                "CMPSC-174A", "CMPSC-174B",
+                "CMPSC-176A", "CMPSC-176B", "CMPSC-176C",
+                "CMPSC-177", "CMPSC-178", "CMPSC-180", "CMPSC/ECE-181", "CMPSC-184", "CMPSC-185", "CMPSC-186", "CMPSC-188",
+                "CMPSC-189A", "CMPSC-189B",
+                "CMPSC-190AA-ZZ",
+                "CMPSC-192", "CMPSC-196", "CMPSC-196B",
+                "ECE-130A", "ECE-130B", "ECE-130C",
+                "ECE-152A", "ECE-153B", "ECE-160", "ECE-178",
+                "MATH-108A", "MATH-108B", "MATH-119A", "MATH-119B", "MATH-124A", "MATH-124B",
+                "PSTAT-120B", "PSTAT-122", "PSTAT-130", "PSTAT-160A", "PSTAT-160B"
+              ]
+            },
+            "footnote_refs": ["fn.cs_192_196_limit", "fn.cs_196b_restriction"]
+          },
+          {
+            "id": "req.ud.science_electives",
+            "title": "Science Courses",
+            "type": "requirement_group",
+            "operator": "AND",
+            "children": [
+              { "type": "choose_units", "title": "Science Electives - List A", "units": 8, "from": { "rule": "approved_list_A_see_dept" } },
+              { "type": "choose_units", "title": "Science Electives - List B", "units": 12, "from": { "rule": "approved_list_B_see_dept" } }
+            ]
+          }
+        ]
+      }
+    ],
+    "footnotes": [
+      {
+        "id": "fn.cs_192_196_limit",
+        "marker": "1",
+        "text": "Four units maximum from CMPSC 192 and 196 combined; only for students with GPA of 3.0 or higher.",
+        "applies_to": ["req.ud.major_field_electives"]
+      },
+      {
+        "id": "fn.cs_196b_restriction",
+        "marker": "2",
+        "text": "Only for students who have met the requirements; see department advisor for more information.",
+        "applies_to": ["req.ud.major_field_electives"]
+      }
+    ],
+    "graph": { "nodes": [], "edges": [] },
+    "raw": { "lines": [] }
+  },
+
+  {
+    "schema_version": "1.0",
+    "source": {
+      "file_name": "UCSBEE.pdf",
+      "path": "/mnt/data/UCSBEE.pdf",
+      "doc_id": null,
+      "extracted_at": "2026-01-10",
+      "pages": 1
+    },
+    "program": {
+      "institution": "University of California, Santa Barbara",
+      "college": null,
+      "department": "Electrical and Computer Engineering",
+      "major_name": "Electrical Engineering",
+      "degree": null,
+      "academic_year": "2025-2026",
+      "contacts": []
+    },
+    "policies": {
+      "grading": [
+        {
+          "id": "policy.letter_grade_required",
+          "text": "To satisfy major requirements, courses taken inside or outside the Department of Electrical and Computer Engineering must be taken for a letter grade.",
+          "constraints": { "letter_grade_required": true, "scope": "major_courses" }
+        }
+      ],
+      "admission": [],
+      "regulations": []
+    },
+    "requirements": [
+      {
+        "id": "req.prep_for_major",
+        "title": "Preparation for the Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "children": [
+          {
+            "id": "req.prep.chem_or_ece6",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 4,
+            "children": [
+              { "type": "course", "course_id": "CHEM-1A" },
+              { "type": "course", "course_id": "CHEM-2A" },
+              { "type": "course", "course_id": "ECE-6" }
+            ]
+          },
+          {
+            "id": "req.prep.cs9_or_16",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 4,
+            "children": [
+              { "type": "course", "course_id": "CMPSC-9" },
+              { "type": "course", "course_id": "CMPSC-16" }
+            ]
+          },
+          { "type": "course", "course_id": "ECE-3", "units": 4 },
+          { "type": "course", "course_id": "ECE-5", "units": 4 },
+          { "type": "course_list", "title": "ECE 10 series", "courses": ["ECE-10A", "ECE-10AL", "ECE-10B", "ECE-10BL", "ECE-10C", "ECE-10CL"], "units": 15 },
+          { "type": "course", "course_id": "ECE-15A", "units": 4 },
+          {
+            "id": "req.prep.math_seq",
+            "type": "requirement_group",
+            "operator": "AND",
+            "units": 24,
+            "children": [
+              {
+                "type": "requirement_group",
+                "operator": "OR",
+                "children": [
+                  { "type": "course_sequence", "subject": "MATH", "courses": ["2A", "2B"] },
+                  { "type": "course_sequence", "subject": "MATH", "courses": ["3A", "3B"] }
+                ]
+              },
+              { "type": "course_sequence", "subject": "MATH", "courses": ["4A", "4B"] },
+              { "type": "course_sequence", "subject": "MATH", "courses": ["6A", "6B"] }
+            ]
+          },
+          { "type": "course_list", "courses": ["PHYS-7A", "PHYS-7B", "PHYS-7C", "PHYS-7D", "PHYS-7L"], "units": 16 },
+          { "type": "course_sequence", "subject": "ECE", "courses": ["130A", "130B"], "units": 8 },
+          { "type": "course", "course_id": "ECE-139", "units": 4 }
+        ]
+      },
+      {
+        "id": "req.upper_division",
+        "title": "Upper Division Major",
+        "type": "requirement_group",
+        "operator": "AND",
+        "total_units": 64,
+        "children": [
+          { "type": "course", "course_id": "ECE-134", "units": 4 },
+          { "type": "course", "course_id": "ECE-152A", "units": 5 },
+          {
+            "id": "req.ud.153a_or_153b",
+            "type": "requirement_group",
+            "operator": "OR",
+            "units": 4,
+            "children": [
+              { "type": "course", "course_id": "ECE-153A" },
+              { "type": "course", "course_id": "ECE-153B" }
+            ],
+            "footnote_refs": ["fn.ee_153a_153b_rule"]
+          },
+          { "type": "course_sequence", "subject": "ECE", "courses": ["188A", "188B", "188C"], "units": 12 },
+          { "type": "course", "course_id": "ENGR-101", "units": 3 },
+          {
+            "id": "req.ud.departmental_electives",
+            "type": "choose_units",
+            "title": "Departmental Electives",
+            "units": 36,
+            "from": {
+              "courses": [
+                "ECE-120A", "ECE-120B",
+                "ECE-122A", "ECE-122B",
+                "ECE-123", "ECE-125",
+                "ECE-130C", "ECE-132", "ECE-133", "ECE-135",
+                "ECE-136A", "ECE-136B", "ECE-136C",
+                "ECE-137A", "ECE-137B",
+                "ECE-141A", "ECE-141B",
+                "ECE-142",
+                "ECE-144",
+                "ECE-145A", "ECE-145B", "ECE-145C",
+                "ECE-146A", "ECE-146B",
+                "ECE-147A", "ECE-147B", "ECE-147C",
+                "ECE-148", "ECE-149",
+                "ECE-152B",
+                "ECE-153A", "ECE-153B",
+                "ECE-154A", "ECE-154B",
+                "ECE-157A", "ECE-157B", "ECE-157C",
+                "ECE-158",
+                "ECE-160",
+                "ECE-162A", "ECE-162B", "ECE-162C",
+                "ECE-178",
+                "ECE-179D", "ECE-179P",
+                "ECE-180", "ECE-181", "ECE-183", "ECE-184", "ECE-186",
+                "ECE-192", "ECE-196",
+                "ECE-194AA-ZZ",
+                "MATRL-100A", "MATRL-100C",
+                "MATRL-100B", "MATRL-101",
+                "MATRL-162A", "MATRL-162B",
+                "TMP-120", "TMP-122"
+              ],
+              "constraints": {
+                "combined_max_units": { "ECE-192+ECE-196": 4 },
+                "exclude": ["ECE-194R"],
+                "tmp_max_courses": 1,
+                "depth_sequence_required": true,
+                "advisor_approval_required": true
+              }
+            },
+            "notes": [
+              "Approval of departmental electives must be obtained from faculty adviser.",
+              "Departmental electives must include an approved depth sequence corresponding to track, or another approved 4+ course depth sequence; see ECE Student Office for lists."
+            ]
+          }
+        ]
+      }
+    ],
+    "footnotes": [
+      {
+        "id": "fn.ee_153a_153b_rule",
+        "marker": "*",
+        "text": "If both ECE 153A and ECE 153B are taken, one may be used as a departmental elective and the other will be used as a required course.",
+        "applies_to": ["req.ud.153a_or_153b"]
+      }
+    ],
+    "graph": { "nodes": [], "edges": [] },
+    "raw": { "lines": [] }
+  }
+]

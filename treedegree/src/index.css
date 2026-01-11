@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TreeDegree Design System - FireBoy & WaterGirl Inspired */
+
+@layer base {
+  :root {
+    /* Cave/Dungeon dark theme */
+    --background: 220 20% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    /* Nature element - Primary (was Fire) */
+    --primary: 145 70% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Water element - Secondary */
+    --secondary: 195 90% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Stone/Muted */
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    /* Nature accent (was Fire accent) */
+    --accent: 155 75% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 18%;
+    --ring: 145 70% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for skill tree */
+    --fire: 145 70% 45%;
+    --fire-glow: 155 75% 48%;
+    --water: 195 90% 50%;
+    --water-glow: 190 100% 65%;
+    --gold: 45 100% 55%;
+    --gold-glow: 50 100% 70%;
+    --completed: 120 60% 45%;
+    --completed-glow: 130 70% 55%;
+    --available: 195 90% 50%;
+    --locked: 220 10% 35%;
+    --bottleneck: 145 70% 45%;
+    --stone: 220 12% 25%;
+    --crystal: 280 60% 65%;
+
+    /* Gradients */
+    --gradient-fire: linear-gradient(135deg, hsl(145, 70%, 45%), hsl(155, 75%, 48%));
+    --gradient-water: linear-gradient(135deg, hsl(195, 90%, 50%), hsl(190, 100%, 65%));
+    --gradient-dual: linear-gradient(90deg, hsl(145, 70%, 45%), hsl(280, 60%, 50%), hsl(195, 90%, 50%));
+    --gradient-gold: linear-gradient(135deg, hsl(45, 100%, 55%), hsl(50, 100%, 70%));
+    --gradient-stone: linear-gradient(135deg, hsl(220, 12%, 18%), hsl(220, 15%, 25%));
+
+    /* Shadows */
+    --shadow-fire: 0 0 30px hsl(145, 70%, 45% / 0.5);
+    --shadow-water: 0 0 30px hsl(195, 90%, 50% / 0.5);
+    --shadow-gold: 0 0 30px hsl(45, 100%, 55% / 0.5);
+    --shadow-glow: 0 0 60px hsl(280, 60%, 50% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-gradient-fire {
+    background: var(--gradient-fire);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-water {
+    background: var(--gradient-water);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-dual {
+    background: var(--gradient-dual);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-fire {
+    box-shadow: var(--shadow-fire);
+  }
+
+  .glow-water {
+    box-shadow: var(--shadow-water);
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .bg-gradient-fire {
+    background: var(--gradient-fire);
+  }
+
+  .bg-gradient-water {
+    background: var(--gradient-water);
+  }
+
+  .bg-gradient-dual {
+    background: var(--gradient-dual);
+  }
+
+  .bg-gradient-stone {
+    background: var(--gradient-stone);
+  }
+
+  /* Crystal button effect */
+  .crystal-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .crystal-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  .crystal-effect:hover::before {
+    left: 100%;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Pulse glow animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 0.8;
+      filter: brightness(1.2);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Particle float */
+  @keyframes particle-float {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) scale(1);
+      opacity: 0;
+    }
+  }
+
+  .animate-particle {
+    animation: particle-float linear infinite;
+  }
+}
+
+/* React Flow custom styles */
+.react-flow__node {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.react-flow__edge-path {
+  stroke-width: 3;
+}
+
+.react-flow__background {
+  background-color: hsl(220, 20%, 8%);
+}

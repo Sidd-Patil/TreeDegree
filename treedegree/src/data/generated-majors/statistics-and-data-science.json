@@ -1,0 +1,550 @@
+[
+  {
+    "id": "6a",
+    "label": "6A",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_16",
+    "label": "CMPSC 16",
+    "title": "Problem Solving with Computers I",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "ece_3"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_8",
+    "label": "CMPSC 8",
+    "title": "Introduction to Computer Science",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "cmpsc_9",
+    "label": "CMPSC 9",
+    "title": "Intermediate Python Programming",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "cmpsc_8",
+      "ece_3"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "lower"
+  },
+  {
+    "id": "ece_3",
+    "label": "ECE 3",
+    "title": "INTRODUCTION TO ELECTRICAL ENGINEERING",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 2,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "econ_100b",
+    "label": "ECON 100B",
+    "title": "Intermediate Microeconomic Theory",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_101",
+    "label": "ECON 101",
+    "title": "Intermediate Macroeconomic Theory",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_134a",
+    "label": "ECON 134A",
+    "title": "Financial Management",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_134b",
+    "label": "ECON 134B",
+    "title": "Financial Management",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_5",
+    "label": "ECON 5",
+    "title": "Statistics for Economics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_34b",
+      "pstat_109",
+      "econ_5"
+    ],
+    "unlocksCount": 4,
+    "prerequisiteCount": 5,
+    "division": "lower"
+  },
+  {
+    "id": "math_104a",
+    "label": "MATH 104A",
+    "title": "Introduction Into Numerical Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_8",
+      "pstat_8",
+      "math_117"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "math_104b",
+    "label": "MATH 104B",
+    "title": "Numerical Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_104a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_104c",
+    "label": "MATH 104C",
+    "title": "Advanced Topics in Numerical Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_104b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_108a",
+    "label": "MATH 108A",
+    "title": "Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a"
+    ],
+    "unlocksCount": 6,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_108b",
+    "label": "MATH 108B",
+    "title": "Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_108a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_111a",
+    "label": "MATH 111A",
+    "title": "Abstract Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_108a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_111b",
+    "label": "MATH 111B",
+    "title": "Abstract Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_111a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_111c",
+    "label": "MATH 111C",
+    "title": "Abstract Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_111b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_117",
+    "label": "MATH 117",
+    "title": "Methods of Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_8"
+    ],
+    "unlocksCount": 3,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_118a",
+    "label": "MATH 118A",
+    "title": "Real Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_118b",
+    "label": "MATH 118B",
+    "title": "Real Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_108b"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_118c",
+    "label": "MATH 118C",
+    "title": "Real Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_118b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_132a",
+    "label": "MATH 132A",
+    "title": "Optimization",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_6a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_132b",
+    "label": "MATH 132B",
+    "title": "Operations Research",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_132a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "math_2a",
+    "label": "MATH 2A",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_3a"
+    ],
+    "unlocksCount": 9,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_2b",
+    "label": "MATH 2B",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34b",
+      "math_2b",
+      "math_3b"
+    ],
+    "unlocksCount": 91,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_34a",
+    "label": "MATH 34A",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 9,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_34b",
+    "label": "MATH 34B",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 36,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_3a",
+    "label": "MATH 3A",
+    "title": "Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 5,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_3b",
+    "label": "MATH 3B",
+    "title": "Calculus with Applications, Second Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 32,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_4a",
+    "label": "MATH 4A",
+    "title": "Linear Algebra with Applications",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 23,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4ai",
+    "label": "MATH 4AI",
+    "title": "Inquiry Based Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a"
+    ],
+    "unlocksCount": 8,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4b",
+    "label": "MATH 4B",
+    "title": "Differential Equations",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a",
+      "math_4ai"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 2,
+    "division": "lower"
+  },
+  {
+    "id": "math_6a",
+    "label": "MATH 6A",
+    "title": "Vector Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 8,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_8",
+    "label": "MATH 8",
+    "title": "Transition to Higher Mathematics",
+    "units": 5,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 11,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "pstat_10",
+    "label": "PSTAT 10",
+    "title": "Principles of Data Science with R",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "pstat_109",
+    "label": "PSTAT 109",
+    "title": "Statistics for Economics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_34b",
+      "econ_5",
+      "pstat_109"
+    ],
+    "unlocksCount": 6,
+    "prerequisiteCount": 5,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_120a",
+    "label": "PSTAT 120A",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a",
+      "math_4ai",
+      "math_6a"
+    ],
+    "unlocksCount": 5,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_120b",
+    "label": "PSTAT 120B",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_120a"
+    ],
+    "unlocksCount": 2,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_122",
+    "label": "PSTAT 122",
+    "title": "Design and Analysis of Experiments",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_10",
+      "pstat_120b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_126",
+    "label": "PSTAT 126",
+    "title": "Regression Analysis",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_10",
+      "pstat_120b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_8",
+    "label": "PSTAT 8",
+    "title": "Transition to Data Science, Probability and Statistics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_8"
+    ],
+    "unlocksCount": 7,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  }
+]

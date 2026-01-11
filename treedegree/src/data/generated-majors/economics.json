@@ -1,0 +1,936 @@
+[
+  {
+    "id": "econ_1",
+    "label": "ECON 1",
+    "title": "Principles of Economics-Micro",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "econ_100b",
+    "label": "ECON 100B",
+    "title": "Intermediate Microeconomic Theory",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 1,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_100c",
+    "label": "ECON 100C",
+    "title": "Intermediate Microeconomic Theory",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_101",
+    "label": "ECON 101",
+    "title": "Intermediate Macroeconomic Theory",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_106",
+    "label": "ECON 106",
+    "title": "Managerial Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_107a",
+    "label": "ECON 107A",
+    "title": "History of Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_107b",
+    "label": "ECON 107B",
+    "title": "History of Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_10a",
+    "label": "ECON 10A",
+    "title": "Intermediate Microeconomic Theory",
+    "units": 5,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 2,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "econ_112a",
+    "label": "ECON 112A",
+    "title": "European Economic History to 1850",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_112b",
+    "label": "ECON 112B",
+    "title": "European Economic History Since 1850",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_113a",
+    "label": "ECON 113A",
+    "title": "Economic History of the United States to 1900",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_113b",
+    "label": "ECON 113B",
+    "title": "Twentieth-Century United States Economic History",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_114a",
+    "label": "ECON 114A",
+    "title": "Economic Development",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_114b",
+    "label": "ECON 114B",
+    "title": "Economic Development",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_115",
+    "label": "ECON 115",
+    "title": "Environmental Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_116a",
+    "label": "ECON 116A",
+    "title": "Industrial Organization Principles",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_116b",
+    "label": "ECON 116B",
+    "title": "Economic Regulation",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_116c",
+    "label": "ECON 116C",
+    "title": "Antitrust Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_117a",
+    "label": "ECON 117A",
+    "title": "Law and Economics I",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_118",
+    "label": "ECON 118",
+    "title": "Financial Accounting Analysis and Planning",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_120",
+    "label": "ECON 120",
+    "title": "Urban and Regional Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_122",
+    "label": "ECON 122",
+    "title": "Natural Resource Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_127",
+    "label": "ECON 127",
+    "title": "Climate Change",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "econ_10a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "econ_130",
+    "label": "ECON 130",
+    "title": "Public Finance",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_133",
+    "label": "ECON 133",
+    "title": "Topics in Macroeconomic Theory",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_134a",
+    "label": "ECON 134A",
+    "title": "Financial Management",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_134b",
+    "label": "ECON 134B",
+    "title": "Financial Management",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_134c",
+    "label": "ECON 134C",
+    "title": "Behavioral Finance",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_135",
+    "label": "ECON 135",
+    "title": "Monetary Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_136a",
+    "label": "ECON 136A",
+    "title": "Intermediate Accounting",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_136b",
+    "label": "ECON 136B",
+    "title": "Intermediate Accounting",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_136c",
+    "label": "ECON 136C",
+    "title": "Intermediate Accounting",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_137a",
+    "label": "ECON 137A",
+    "title": "Managerial Accounting",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_137b",
+    "label": "ECON 137B",
+    "title": "Managerial Accounting",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_138a",
+    "label": "ECON 138A",
+    "title": "Income Taxation",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_138b",
+    "label": "ECON 138B",
+    "title": "Income Taxation",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_140a",
+    "label": "ECON 140A",
+    "title": "Introduction to Econometrics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_140b",
+    "label": "ECON 140B",
+    "title": "Introduction to Econometrics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_140c",
+    "label": "ECON 140C",
+    "title": "Introduction to Econometrics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_141",
+    "label": "ECON 141",
+    "title": "Econometric Methods",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109",
+      "pstat_120a",
+      "math_4a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  },
+  {
+    "id": "econ_145",
+    "label": "ECON 145",
+    "title": "Data Wrangling for Economics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "econ_1",
+      "econ_2"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 2,
+    "division": "upper"
+  },
+  {
+    "id": "econ_150a",
+    "label": "ECON 150A",
+    "title": "Labor Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_151",
+    "label": "ECON 151",
+    "title": "Economics of Gender",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_152",
+    "label": "ECON 152",
+    "title": "Personnel Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_153",
+    "label": "ECON 153",
+    "title": "Economics of Education",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "econ_10a"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "econ_154",
+    "label": "ECON 154",
+    "title": "Economics of the Family",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_155",
+    "label": "ECON 155",
+    "title": "Using Big Data to Address Social and Economic Problems",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_156",
+    "label": "ECON 156",
+    "title": "Topics in Applied Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_157",
+    "label": "ECON 157",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_160",
+    "label": "ECON 160",
+    "title": "Economics of Crime and Justice",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "pstat_109"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "econ_164",
+    "label": "ECON 164",
+    "title": "Economics of Arts and Culture",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_170",
+    "label": "ECON 170",
+    "title": "Health Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_171",
+    "label": "ECON 171",
+    "title": "Introduction to Game Theory",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_174",
+    "label": "ECON 174",
+    "title": "Negotiations",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_176",
+    "label": "ECON 176",
+    "title": "Experimental Economics",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_177",
+    "label": "ECON 177",
+    "title": "Auction",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "econ_100b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "econ_180",
+    "label": "ECON 180",
+    "title": "International Trade",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_181",
+    "label": "ECON 181",
+    "title": "International Finance",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_183",
+    "label": "ECON 183",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_184",
+    "label": "ECON 184",
+    "title": "Decisions Under Uncertainty",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_185",
+    "label": "ECON 185",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_187",
+    "label": "ECON 187",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_191aazz",
+    "label": "ECON 191AA-ZZ",
+    "title": "",
+    "units": 0,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_196a",
+    "label": "ECON 196A",
+    "title": "Senior Honors Seminar",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_196b",
+    "label": "ECON 196B",
+    "title": "Senior Honors Seminar",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "econ_140b"
+    ],
+    "unlocksCount": 0,
+    "prerequisiteCount": 1,
+    "division": "upper"
+  },
+  {
+    "id": "econ_199",
+    "label": "ECON 199",
+    "title": "Independent Studies in Economics",
+    "units": null,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 0,
+    "prerequisiteCount": 0,
+    "division": "upper"
+  },
+  {
+    "id": "econ_2",
+    "label": "ECON 2",
+    "title": "Principles of Economics-Macro",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 1,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "econ_5",
+    "label": "ECON 5",
+    "title": "Statistics for Economics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_34b",
+      "pstat_109",
+      "econ_5"
+    ],
+    "unlocksCount": 20,
+    "prerequisiteCount": 5,
+    "division": "lower"
+  },
+  {
+    "id": "math_2a",
+    "label": "MATH 2A",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_3a"
+    ],
+    "unlocksCount": 41,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_2b",
+    "label": "MATH 2B",
+    "title": "Calculus with Algebra and Trigonometry",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34b",
+      "math_2b",
+      "math_3b"
+    ],
+    "unlocksCount": 101,
+    "prerequisiteCount": 3,
+    "division": "lower"
+  },
+  {
+    "id": "math_34a",
+    "label": "MATH 34A",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 41,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_34b",
+    "label": "MATH 34B",
+    "title": "Calculus for Social and Life Sciences",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 61,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_3a",
+    "label": "MATH 3A",
+    "title": "Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 21,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_3b",
+    "label": "MATH 3B",
+    "title": "Calculus with Applications, Second Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 41,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "math_4a",
+    "label": "MATH 4A",
+    "title": "Linear Algebra with Applications",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_2b"
+    ],
+    "unlocksCount": 19,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_4ai",
+    "label": "MATH 4AI",
+    "title": "Inquiry Based Linear Algebra",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a"
+    ],
+    "unlocksCount": 9,
+    "prerequisiteCount": 1,
+    "division": "lower"
+  },
+  {
+    "id": "math_6a",
+    "label": "MATH 6A",
+    "title": "Vector Calculus with Applications, First Course",
+    "units": 4,
+    "status": "available",
+    "prerequisites": [],
+    "unlocksCount": 9,
+    "prerequisiteCount": 0,
+    "division": "lower"
+  },
+  {
+    "id": "pstat_109",
+    "label": "PSTAT 109",
+    "title": "Statistics for Economics",
+    "units": 5,
+    "status": "locked",
+    "prerequisites": [
+      "math_34a",
+      "math_2a",
+      "math_34b",
+      "econ_5",
+      "pstat_109"
+    ],
+    "unlocksCount": 29,
+    "prerequisiteCount": 5,
+    "division": "upper"
+  },
+  {
+    "id": "pstat_120a",
+    "label": "PSTAT 120A",
+    "title": "Probability and Statistics",
+    "units": 4,
+    "status": "locked",
+    "prerequisites": [
+      "math_4a",
+      "math_4ai",
+      "math_6a"
+    ],
+    "unlocksCount": 8,
+    "prerequisiteCount": 3,
+    "division": "upper"
+  }
+]
