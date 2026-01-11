@@ -295,6 +295,28 @@ export function buildCoursesForMajorSlug({
     };
   });
 
+  // Filter out prerequisite cycles (A requires B, B requires A)
+function hasCyclicDependency(courseId: string, prerequisites: string[], courseMap: Map<string, Set<string>>): boolean {
+  for (const prereq of prerequisites) {
+    const prereqDeps = courseMap.get(prereq);
+    if (prereqDeps?.has(courseId)) {
+      return true; // cycle detected
+    }
+  }
+  return false;
+}
+
+// Build reverse dependency map
+const coursePrereqMap = new Map<string, Set<string>>();
+for (const c of coursesOut) {
+  coursePrereqMap.set(c.id, new Set(c.prerequisites));
+}
+
+// Remove cyclic prerequisites
+for (const c of coursesOut) {
+  c.prerequisites = c.prerequisites.filter(p => !hasCyclicDependency(c.id, [p], coursePrereqMap));
+}
+
   // unlock counts
   const unlockCounts: Record<string, number> = {};
   for (const c of coursesOut) for (const p of c.prerequisites) unlockCounts[p] = (unlockCounts[p] ?? 0) + 1;

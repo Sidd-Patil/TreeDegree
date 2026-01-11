@@ -19,6 +19,7 @@ import { ArrowLeft, Download, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CourseNode } from "@/components/CourseNode";
+import { StandaloneElectivesNode } from "@/components/StandaloneElectivesNode";
 import { SkillTreeLegend } from "@/components/SkillTreeLegend";
 import type { CourseNodeData } from "@/data/sampleCourseData";
 import { majorCoursesToFlow, type GeneratedCourse } from "@/data/majorToFlow";
@@ -33,7 +34,7 @@ import {
 
 type CourseStatus = "completed" | "available" | "locked";
 
-const nodeTypes = { course: CourseNode };
+const nodeTypes = { course: CourseNode, standaloneElectives: StandaloneElectivesNode };
 
 function prereqClosure(targetNodeIds: string[], edges: Edge[]) {
   const { parents } = buildAdjacency(edges); // you already have this helper
@@ -596,6 +597,11 @@ function SkillTreeInner() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeCourseId, setActiveCourseId] = useState<string | null>(null);
 
+  const openCourseModal = useCallback((courseId: string) => {
+    setActiveCourseId(courseId);
+    setDialogOpen(true);
+  }, []);
+
   const activeNodeData = useMemo(() => {
     if (!activeCourseId) return null;
     // find *unprefixed* course in current status list
@@ -616,20 +622,58 @@ function SkillTreeInner() {
 
     const { lower, upper, electives } = splitByGroup(coursesWithStatus);
 
+    // Stand-alone electives = elective courses that:
+    // - have no prerequisites, AND
+    // - are not a prerequisite of any other course in this major's graph
+    const prereqTargets = new Set<string>();
+    for (const c of coursesWithStatus) {
+      for (const p of c.prerequisites ?? []) prereqTargets.add(p);
+    }
+
+    const standaloneElectives = electives.filter((c) => {
+      const prereqs = c.prerequisites ?? [];
+      return prereqs.length === 0 && !prereqTargets.has(c.id);
+    });
+    const standaloneIds = new Set(standaloneElectives.map((c) => c.id));
+    const electivesWithoutStandalone = electives.filter((c) => !standaloneIds.has(c.id));
+
     const lowerFlowRaw = majorCoursesToFlow(lower);
     const upperFlowRaw = majorCoursesToFlow(upper);
-    const electivesFlowRaw = majorCoursesToFlow(electives);
+    const electivesFlowRaw = majorCoursesToFlow(electivesWithoutStandalone);
 
     const lowerEdgesPruned = pruneDanglingEdges(lowerFlowRaw.nodes as any, lowerFlowRaw.edges);
     const upperEdgesPruned = pruneDanglingEdges(upperFlowRaw.nodes as any, upperFlowRaw.edges);
-    const electivesEdgesPruned = pruneDanglingEdges(
-      electivesFlowRaw.nodes as any,
-      electivesFlowRaw.edges
-    );
+    const electivesEdgesPruned = pruneDanglingEdges(electivesFlowRaw.nodes as any, electivesFlowRaw.edges);
+
+    const electivesNodesWithStandalone = (() => {
+      const eb = computeBounds(electivesFlowRaw.nodes as any);
+      const hasAny = (electivesFlowRaw.nodes as any)?.length > 0;
+      const pos = hasAny ? { x: eb.minX, y: eb.maxY + 240 } : { x: 0, y: 0 };
+
+      const standaloneNode = {
+        id: "standalone-electives",
+        type: "standaloneElectives",
+        position: pos,
+        data: {
+          label: "Stand-alone electives",
+          status: "available",
+          onOpenCourse: openCourseModal,
+          courses: standaloneElectives.map((c) => ({
+            id: c.id,
+            label: c.label,
+            title: c.title,
+            status: c.status,
+            units: c.units,
+          })),
+        },
+      };
+
+      return [...(electivesFlowRaw.nodes as any), standaloneNode];
+    })();
 
     const lowerFlow = prefixFlow(lowerFlowRaw.nodes as any, lowerEdgesPruned, "L:");
     const upperFlow = prefixFlow(upperFlowRaw.nodes as any, upperEdgesPruned, "U:");
-    const electivesFlow = prefixFlow(electivesFlowRaw.nodes as any, electivesEdgesPruned, "E:");
+    const electivesFlow = prefixFlow(electivesNodesWithStandalone as any, electivesEdgesPruned, "E:");
 
     const gap = 560;
 
@@ -665,7 +709,7 @@ function SkillTreeInner() {
 
     setBaseNodes(combinedNodes);
     setBaseEdges(combinedEdges);
-  }, [coursesWithStatus]);
+  }, [coursesWithStatus, openCourseModal]);
 
   // Apply status filters + branch highlight styling
   useEffect(() => {
@@ -781,6 +825,7 @@ const onNodeClick = useCallback(
 const onNodeDoubleClick = useCallback(
   (_: any, node: Node<any>) => {
     if (!node?.id) return;
+    if (node.type !== "course") return;
 
     // double click = open modal
     const courseId =
