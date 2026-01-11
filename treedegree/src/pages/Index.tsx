@@ -153,22 +153,6 @@ const handleGenerateTree = () => {
           </motion.div>
         </motion.div>
 
-        {/* Demo Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="mt-8"
-        >
-          <Button
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
-            onClick={() => navigate("/skill-tree/computer-science")}
-          >
-            or view demo skill tree →
-          </Button>
-        </motion.div>
-
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
