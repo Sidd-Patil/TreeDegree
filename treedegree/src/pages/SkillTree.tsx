@@ -955,7 +955,7 @@ const onNodeDoubleClick = useCallback(
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-4 left-4 z-20">
         <div className="rounded-xl border-2 border-muted bg-card/90 backdrop-blur-md p-4">
           <h3 className="font-display font-semibold text-sm text-foreground mb-3">Progress Summary</h3>
-          <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="grid grid-cols-3 gap-3 text-sm">
             <div className="flex flex-col">
               <span className="text-gold font-bold text-lg">{progress.completed}</span>
               <span className="text-muted-foreground text-xs">Completed</span>
@@ -967,10 +967,6 @@ const onNodeDoubleClick = useCallback(
             <div className="flex flex-col">
               <span className="text-locked font-bold text-lg">{progress.locked}</span>
               <span className="text-muted-foreground text-xs">Locked</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-fire font-bold text-lg">{progress.totalUnits}</span>
-              <span className="text-muted-foreground text-xs">Total Units</span>
             </div>
           </div>
         </div>
