@@ -136,7 +136,7 @@ function collapseIsolatedElectivesToBucket(
     position: { x: 0, y: 0 }, // dagre will place it
     data: {
       label: "Other Electives",
-      title: "Not connected to the elective pathways",
+      title: "Must Complete All Upper Div Courses",
       items: isolated.map((n) => ({
         id: n.id.replace(/^E:/, ""), // strip prefix if present
         label: (n.data as any)?.label ?? n.id,
@@ -772,9 +772,64 @@ function SkillTreeInner() {
     const ub = computeBounds(upperNodesNorm as any);
     const upperWidth = ub.maxX - ub.minX;
 
-    const electivesNodesNorm = offsetNodes(electivesFlowLaid.nodes as any, normalizeLowerX + lowerWidth + gap + upperWidth + gap, 0);
+const electivesNodesNorm = offsetNodes(
+  electivesFlowLaid.nodes as any,
+  normalizeLowerX + lowerWidth + gap + upperWidth + gap,
+  0
+);
 
-    const combinedNodes = [...lowerNodesNorm, ...upperNodesNorm, ...electivesNodesNorm];
+const BUCKET_ID = "E:__electives_bucket__";
+
+// bounds of electives EXCLUDING the bucket
+const electivesNonBucket = electivesNodesNorm.filter((n) => n.id !== BUCKET_ID);
+const eb = computeBounds(electivesNonBucket);
+
+// pull bucket node out
+const bucket = electivesNodesNorm.find((n) => n.id === BUCKET_ID);
+
+// if bucket exists, pin it to top-center of electives area
+const electivesNodesPinned = bucket
+  ? electivesNodesNorm.map((n) => {
+      if (n.id !== BUCKET_ID) return n;
+
+      const bucketW =
+        Number((n.style as any)?.width) ||
+        Number((n.data as any)?.width) ||
+        520;
+
+      const bucketH =
+        Number((n.style as any)?.height) ||
+        Number((n.data as any)?.height) ||
+        220;
+
+      const BUCKET_SHIFT_X = 160; // try 120–400
+      const centerX = (eb.minX + eb.maxX) / 2 - bucketW / 2 + BUCKET_SHIFT_X;
+
+      const BUCKET_GAP = 200;
+
+      const topY = eb.minY - bucketH - BUCKET_GAP;
+
+      return {
+        ...n,
+        position: { x: centerX, y: topY },
+      };
+    })
+  : electivesNodesNorm;
+
+
+
+    const electiveIds = new Set(electives.map(e => e.id));
+
+    const connected = new Set<string>();
+    for (const e of electivesFlowLaid.edges) {
+      connected.add(e.source.replace(/^E:/, ""));
+      connected.add(e.target.replace(/^E:/, ""));
+    }
+
+    const isolatedElectives = electives.filter(e => !connected.has(e.id));
+
+
+    const combinedNodes = [...lowerNodesNorm, ...upperNodesNorm, ...electivesNodesPinned];
     const combinedEdges = [
       ...(lowerFlowLaid.edges as any),
       ...(upperFlowLaid.edges as any),

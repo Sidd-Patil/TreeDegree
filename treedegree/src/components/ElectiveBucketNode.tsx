@@ -38,11 +38,11 @@ export function ElectiveBucketNode({ data }: NodeProps<ElectiveBucketNodeType>) 
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="font-display font-extrabold text-lg">{data.label}</div>
+          <div className="font-display font-extrabold text-3xl">{data.label}</div>
           {data.title ? (
-            <div className="text-sm text-muted-foreground">{data.title}</div>
+            <div className="text-sm text-muted-foreground text-red-500">{data.title}</div>
           ) : null}
-          <div className="mt-1 text-xs text-muted-foreground">
+          <div className="mt-1 text-lg text-muted-foreground">
             {sorted.length} elective{sorted.length === 1 ? "" : "s"}
           </div>
         </div>
@@ -50,8 +50,8 @@ export function ElectiveBucketNode({ data }: NodeProps<ElectiveBucketNodeType>) 
 
       <div className="mt-3">
         <Collapsible defaultOpen={false}>
-          <CollapsibleTrigger className="flex items-center gap-2 text-sm font-semibold text-water hover:opacity-90">
-            <ChevronDown className="h-4 w-4" />
+          <CollapsibleTrigger className="flex items-center gap-2 text-lg font-semibold text-water hover:opacity-90">
+            <ChevronDown className="h-4 w-4 text-lg" />
             Show electives
           </CollapsibleTrigger>
 
