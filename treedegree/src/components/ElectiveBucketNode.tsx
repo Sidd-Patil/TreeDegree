@@ -1,6 +1,5 @@
 import { useMemo } from "react";
-import type { NodeProps } from "@xyflow/react";
-import type { Node } from "@xyflow/react";
+import type { NodeProps, Node } from "@xyflow/react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -9,27 +8,39 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
+type CourseStatus = "completed" | "available" | "locked";
+
 type Item = {
   id: string;
   label: string;
   title?: string;
-  status?: "completed" | "available" | "locked";
+  status?: CourseStatus;
 };
 
 export type ElectiveBucketData = {
   label: string;
   title?: string;
   items: Item[];
-  onOpenCourse?: (courseId: string) => void; // ✅ NEW
+  onOpenCourse?: (courseId: string) => void;
 };
 
-// inside ElectiveBucketNode (top-level in the file)
-function statusColor(status?: "completed" | "available" | "locked") {
-  // EXACTLY matches your SkillTree MiniMap mapping
-  if (status === "completed") return "hsl(142, 70%, 45%)";
-  if (status === "available") return "hsl(195, 90%, 50%)";
-  return "hsl(220, 10%, 35%)";
-}
+const statusStyles: Record<CourseStatus, { bg: string; border: string; text: string }> = {
+  completed: {
+    bg: "bg-gradient-to-br from-gold/90 to-completed/90",
+    border: "border-gold-glow",
+    text: "text-foreground",
+  },
+  available: {
+    bg: "bg-gradient-to-br from-water/90 to-water-glow/70",
+    border: "border-water-glow",
+    text: "text-foreground",
+  },
+  locked: {
+    bg: "bg-gradient-to-br from-locked/80 to-muted/60",
+    border: "border-locked",
+    text: "text-foreground/90",
+  },
+};
 
 export type ElectiveBucketNodeType = Node<ElectiveBucketData>;
 
@@ -50,7 +61,7 @@ export function ElectiveBucketNode({ data }: NodeProps<ElectiveBucketNodeType>) 
         <div>
           <div className="font-display font-extrabold text-3xl">{data.label}</div>
           {data.title ? (
-            <div className="text-sm text-muted-foreground text-red-500">{data.title}</div>
+            <div className="text-sm text-muted-foreground">{data.title}</div>
           ) : null}
           <div className="mt-1 text-lg text-muted-foreground">
             {sorted.length} elective{sorted.length === 1 ? "" : "s"}
@@ -67,87 +78,53 @@ export function ElectiveBucketNode({ data }: NodeProps<ElectiveBucketNodeType>) 
 
           <CollapsibleContent className="mt-3">
             <div
-              className="max-h-[260px] overflow-auto rounded-xl border border-muted bg-background/60 p-2 space-y-1"
-              onWheelCapture={(e) => {
-                // prevent ReactFlow from zooming/panning
-                e.stopPropagation();
-              }}
-              onPointerDownCapture={(e) => {
-                // prevent drag-pan starting from inside the list
-                e.stopPropagation();
-              }}
-              onPointerMoveCapture={(e) => {
-                e.stopPropagation();
-              }}
-              onPointerUpCapture={(e) => {
-                e.stopPropagation();
-              }}
+              className="max-h-[260px] overflow-auto rounded-xl border border-muted bg-background/60 p-2 space-y-2"
+              onWheelCapture={(e) => e.stopPropagation()}
+              onPointerDownCapture={(e) => e.stopPropagation()}
+              onPointerMoveCapture={(e) => e.stopPropagation()}
+              onPointerUpCapture={(e) => e.stopPropagation()}
             >
               {sorted.map((it) => {
-                const done = it.status === "completed";
-                const c = statusColor(it.status);
+                const status: CourseStatus = it.status ?? "locked";
+                const s = statusStyles[status];
+
+                const clickable = typeof data.onOpenCourse === "function";
 
                 return (
                   <button
                     key={it.id}
                     type="button"
                     onClick={(e) => {
-                      e.stopPropagation(); // don't select bucket node / pan
-                      data.onOpenCourse?.(it.id); // ✅ open modal
+                      e.stopPropagation();
+                      data.onOpenCourse?.(it.id);
                     }}
+                    disabled={!clickable}
                     className={cn(
-                      "w-full text-left rounded-lg border px-6 py-4 transition",
-                      done
-                        ? [
-                            // ✅ EXACT same color as the mapping
-                            "bg-[hsl(142,70%,45%)]",
-                            "border-[hsl(142,70%,45%)]",
-                            // readable text on green background
-                            "text-white",
-                          ].join(" ")
-                        : "border-muted bg-background hover:bg-muted/40"
+                      "w-full text-left rounded-2xl border-2 p-3 backdrop-blur-sm",
+                      s.bg,
+                      s.border,
+                      clickable ? "hover:opacity-95 transition" : ""
                     )}
-                    // keep map (helper) untouched; we only use it for optional accents
-                    style={
-                      done
-                        ? undefined
-                        : {
-                            boxShadow: `inset 6px 0 0 0 ${c}`,
-                          }
-                    }
+                    title={clickable ? `Open ${it.label}` : it.title ? `${it.label} — ${it.title}` : it.label}
                   >
-                    <div className="flex items-center justify-between gap-2">
-                      <div
-                        className={cn(
-                          "font-semibold text-lg",
-                          done ? "text-white" : "text-foreground"
-                        )}
-                      >
-                        {it.label}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className={cn("text-sm font-semibold truncate", s.text)}>
+                          {it.label}
+                        </div>
+                        {it.title ? (
+                          <div className="text-xs text-foreground/80 line-clamp-1">
+                            {it.title}
+                          </div>
+                        ) : null}
                       </div>
 
                       {it.status ? (
-                        <div
-                          className={cn(
-                            "text-sm",
-                            done ? "text-white/90" : "text-muted-foreground"
-                          )}
-                        >
+                        <div className={cn("text-xs capitalize", s.text, "opacity-80")}>
                           {it.status}
                         </div>
                       ) : null}
                     </div>
-
-                    {it.title ? (
-                      <div
-                        className={cn(
-                          "text-sm",
-                          done ? "text-white/80" : "text-muted-foreground"
-                        )}
-                      >
-                        {it.title}
-                      </div>
-                    ) : null}
                   </button>
                 );
               })}

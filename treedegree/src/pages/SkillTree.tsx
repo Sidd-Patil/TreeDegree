@@ -549,6 +549,9 @@ function FocusControls({
 /* ---------------- Main ---------------- */
 
 function SkillTreeInner() {
+  const BUCKET_ID = "E:__electives_bucket__";
+  const [electivesBucketOpen, setElectivesBucketOpen] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { majorSlug } = useParams<{ majorSlug: string }>();
