@@ -970,7 +970,7 @@ const onNodeDoubleClick = useCallback(
             <DialogTitle>{activeNodeData?.label ?? "Course"}</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2 text-lg">
             <div className="text-muted-foreground">{activeNodeData?.title ?? ""}</div>
 
             <div className="flex items-center gap-2">

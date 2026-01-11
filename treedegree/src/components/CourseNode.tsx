@@ -79,10 +79,10 @@ export const CourseNode = memo(({ data }: NodeProps) => {
 
       {/* Content */}
       <div className="flex flex-col gap-1">
-        <div className="font-display font-bold text-sm text-foreground tracking-wide">
+        <div className="font-display font-bold text-2xl text-foreground tracking-wide">
           {label}
         </div>
-        <div className="text-xs text-foreground/80 line-clamp-2 font-body">
+        <div className="text-base text-foreground/80 line-clamp-2 font-body">
           {title}
         </div>
         <div className="flex items-center justify-between mt-1">
